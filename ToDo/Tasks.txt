@@ -1,0 +1,5 @@
+1. @Query 
+2. HateOS
+3. Actuator
+4. JPA (One-to-Many, One-to-One)
+5. Database complete - order, card, purchase

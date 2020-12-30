@@ -24,7 +24,7 @@ public class Product {
 	private String  productName;
 	
 	@Column
-	private Blob productimage;
+	private Blob productimage; // ByteArray
 	
 	@Column
 	private String description;
