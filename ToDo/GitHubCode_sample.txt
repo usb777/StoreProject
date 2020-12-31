@@ -1,0 +1,5 @@
+https://github.com/MrLearnerNinja/shopping-ui
+
+
+
+https://github.com/MrLearnerNinja/shopping-restfulapi/tree/master/shopping/src/main/java/com/spring/model
