@@ -78,7 +78,10 @@ public class UserService implements IUserService
 	            
 	            
 	        }
-	        return oldC;
+	      //  return oldC; 
+	        
+	        return userRepository.save(oldC);
+	        
 	    }
 	    
 

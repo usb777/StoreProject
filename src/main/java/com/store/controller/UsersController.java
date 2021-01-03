@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.store.model.User;
 import com.store.services.IUserService;
 import com.store.services.UserService;
-import static org.springframework.hateoas.Links.*;
+//import static org.springframework.hateoas.Links.*;
 
 
 @RestController
@@ -38,7 +38,7 @@ public class UsersController
 	    }
 	  
 	  @GetMapping("/{id}")
-		public ResponseEntity getVisualizationById(@PathVariable int id) {
+		public ResponseEntity getUserById(@PathVariable int id) {
 			if(id == 0 ) {
 				return new ResponseEntity<>("Id must not be 0", HttpStatus.BAD_REQUEST);
 			}

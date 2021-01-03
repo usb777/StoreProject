@@ -19,24 +19,24 @@ public class Cart
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	@Column(name = "cart_id")	
-	int cart_id;	
+	int cart_id;    //1	
 		
 	@Column
-	int user_id;
+	int user_id;    //2
 	
 	@Column
-	int product_id;
+	int product_id;  //3
+	 
+	@Column
+	Date date_added;   //4
 	
 	@Column
-	Date date_added;
+	String email;           //5
 	
 	@Column
-	String email;
-	
-	@Column
-	int quantity;
+	int quantity;           //6
 
-	public Cart() 
+	public Cart()  
 	{
 		super();
 	}	
