@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.store.model.User;
 import com.store.services.IUserService;
 import com.store.services.UserService;
+import static org.springframework.hateoas.Links.*;
 
 
 @RestController
@@ -43,9 +44,9 @@ public class UsersController
 			}
 			return new ResponseEntity<User>(us.getUserByID(id), HttpStatus.OK);
 		}
+	 
 	  
-	  
-
+	 
 	    @PostMapping
 	    public ResponseEntity<User> saveNewUser(@RequestBody User u)
 	    {
