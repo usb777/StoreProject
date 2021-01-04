@@ -2,11 +2,14 @@ package com.store.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -50,8 +53,15 @@ public class User
 	@Column(name = "usertype_id")
 	int usertype_id;
 	
-	@Column(name = "usercol")
-	String usercol;
+	/*
+	@Column(name = "address_id")
+	int address_id;
+	*/
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
+	
 	
 	public User() 
 	{
@@ -59,7 +69,7 @@ public class User
 	}
 	//constructor
 	public User(int user_id, Date dateof_birth, String job, String name, int age, String email, boolean is_enabled,
-				String password, String username, int usertype_id, String usercol) 
+				String password, String username, int usertype_id,/*int address_id*/ Address address) 
 	{
 		super();
 		this.user_id = user_id;
@@ -72,7 +82,8 @@ public class User
 		this.password = password;
 		this.username = username;
 		this.usertype_id = usertype_id;
-		this.usercol = usercol;
+		//this.address_id =  address_id;
+		this.address = address;
 	}
 	
 	
@@ -137,21 +148,34 @@ public class User
 	public void setUsertype_id(int usertype_id) {
 		this.usertype_id = usertype_id;
 	}
-	public String getUsercol() {
-		return usercol;
+	/*
+	public int getAddress_id() {
+		return address_id;
 	}
-	public void setUsercol(String usercol) {
-		this.usercol = usercol;
+	public void setAddress_id(int address_id) {
+		this.address_id = address_id;
+	}
+	
+	*/
+	
+	
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
-
-
+	
 	@Override
 	public String toString() {
 		return "User [user_id=" + user_id + ", dateof_birth=" + dateof_birth + ", job=" + job + ", name=" + name
 				+ ", age=" + age + ", email=" + email + ", is_enabled=" + is_enabled + ", password=" + password
-				+ ", username=" + username + ", usertype_id=" + usertype_id + ", usercol=" + usercol + "]";
+				+ ", username=" + username + ", usertype_id=" + usertype_id  /* + ", address_id=" + address_id   */+"]";
 	}
+	
+
+	
 	
 	
 

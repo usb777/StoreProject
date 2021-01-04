@@ -1,11 +1,16 @@
 package com.store.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import com.store.dao_repositories.UserJPARepository;
+import com.store.model.Address;
 import com.store.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,21 +71,44 @@ public class UserService implements IUserService
 	    @Transactional
 	    public User updateUser(User u) 
 	   {
-	        User oldC = userRepository.getOne(u.getUser_id());
+	        User oldUser = userRepository.getOne(u.getUser_id());
 	       
-	        if (u.getName() != null) 
+	        if (u.getUsername() != null) 
 	        {
-	            oldC.setName(u.getName());
-	            oldC.setEmail(u.getEmail());  // added for change
-	            oldC.setUsername(u.getUsername());
-	            oldC.setPassword(u.getPassword());
-	          //  oldC.setRole(u.getRole());
-	            
-	            
+	        	
+	        	/*
+	        	 	
+	int user_id;	
+	
+	
+	Date dateof_birth;  //2
+	String job;      //3        
+	String name;  //4
+	int age; //5
+	String email;  //6
+	boolean is_enabled;  //7
+	String password;  //8
+	String username;  //9
+	int usertype_id;//10
+	private Address address; //11  
+	    */    	
+	        	
+	        	 oldUser.setDateof_birth(u.getDateof_birth());  //2
+	        	 oldUser.setJob(u.getJob()); //3
+	            oldUser.setName(u.getName());   //4
+	            oldUser.setAge(u.getAge()); //5
+	            oldUser.setEmail(u.getEmail());  // 6
+	            oldUser.setIs_enabled(u.isIs_enabled());//7
+	            oldUser.setPassword(u.getPassword());  //8
+	            oldUser.setUsername(u.getUsername()); //9
+	            oldUser.setUsertype_id(u.getUsertype_id()); //10
+	            oldUser.setAddress(u.getAddress());  //11
+	           
+	         
 	        }
 	      //  return oldC; 
 	        
-	        return userRepository.save(oldC);
+	        return userRepository.save(oldUser);
 	        
 	    }
 	    
