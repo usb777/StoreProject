@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -20,12 +21,17 @@ public class Product {
 	@GeneratedValue
 	@Column(name = "product_id")
 	private int product_id;
+	
 	@Column
 	private String  productName;
 	
 	@Column
-	private Blob productimage; // ByteArray
+	@Lob
+	private byte[] productimage; // ByteArray
 	
+	
+	
+
 	@Column
 	private String description;
 	@Column
@@ -41,8 +47,8 @@ public class Product {
 	}
 	
 	
-	public Product(int product_id, String productName, Blob productimage, String description, double price,
-			int quantity) {
+	public Product(int product_id, String productName, 	byte[] productimage, String description, double price,	int quantity) 
+	{
 		super();
 		this.product_id = product_id;
 		this.productName = productName;
@@ -68,13 +74,6 @@ public class Product {
 		this.productName = productName;
 	}
 
-	public Blob getProductimage() {
-		return productimage;
-	}
-
-	public void setProductimage(Blob productimage) {
-		this.productimage = productimage;
-	}
 
 	public String getDescription() {
 		return description;
@@ -100,7 +99,16 @@ public class Product {
 		this.quantity = quantity;
 	}
 	
+
 	
+	public byte[] getProductimage() {
+		return productimage;
+	}
+
+
+	public void setProductimage(byte[] productimage) {
+		this.productimage = productimage;
+	}
 	
 	
 }

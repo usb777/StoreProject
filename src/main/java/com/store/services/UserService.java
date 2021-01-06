@@ -1,5 +1,7 @@
 package com.store.services;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +16,7 @@ import com.store.model.Address;
 import com.store.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -119,6 +122,13 @@ public class UserService implements IUserService
 	        User oldC = userRepository.getOne(id); // getOne
 	        userRepository.deleteById(id);
 	       
+	    }
+	    
+	    
+	   public Collection<User> findAllActiveUsers()
+	    { userRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
+	    	 List arr = new ArrayList();
+	    	return arr;
 	    }
 
 

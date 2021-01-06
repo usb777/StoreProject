@@ -50,6 +50,7 @@ public class User
 	@Column(name = "username")
 	String username;
 	
+	
 	@Column(name = "usertype_id")
 	int usertype_id;
 	

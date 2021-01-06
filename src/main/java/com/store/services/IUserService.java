@@ -1,7 +1,9 @@
 package com.store.services;
 
+import java.util.Collection;
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
 
 import com.store.model.User;
 
@@ -15,4 +17,8 @@ public interface IUserService
 	  public User saveNewUser(User u);
 	  public User updateUser(User u);
 	  public void deleteUser(int id);
+	  
+	  
+	  @Query("SELECT u FROM User u WHERE u.status = 1")
+	 public Collection<User> findAllActiveUsers();
 }
