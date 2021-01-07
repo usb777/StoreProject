@@ -21,22 +21,23 @@ import com.store.services.UserService;
 @RequestMapping("/admin")
 public class AdminWebController
 {
-	private UserService us;
+	private UserService userService;
 	
 	 @Autowired
 	    private ProductService productService;
 	
 	 @Autowired
-	    public AdminWebController(UserService us)
+	    public AdminWebController(UserService userService)
 	 {
-	        this.us = us;
+	        this.userService = userService;
 	  }
 	 
 	
 	 @RequestMapping("/users")
-	    public ResponseEntity<List<User>> getUsers() 
+	    public String showUserList(Model model)  
 	    {
-	        return new ResponseEntity(us.getUsers(), HttpStatus.OK);
+		 	model.addAttribute("users", userService.getUsers());
+		    return "admin/users";
 	    }
 	 
 	 /*
@@ -50,10 +51,10 @@ public class AdminWebController
 	   
 	   //View Layer
 	   @RequestMapping("/products")
-	   public String showUserList(Model model) {
+	   public String showProductList(Model model) {
 		   
 		   model.addAttribute("products", productService.getProducts());
-		    return "admin/admin-products";
+		    return "admin/products";
 		   
 	   }
 	   
