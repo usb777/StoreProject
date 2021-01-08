@@ -30,26 +30,25 @@ public class OrderService implements IOrderService
 	    
 	
 
-	    
+	   // Get Orders 
 	@Override
-	public List<Order> getOrders() {
-		// TODO Auto-generated method stub
+	public List<Order> getOrders() 
+	{
 		return orderRepository.findAll();
 	}
 
 	
 	
 	@Override
-	public Order getOrderByID(int orderId) throws RecordNotFoundException {
-		// TODO Auto-generated method stub
-		return orderRepository.getOne(orderId);
+	public Order getOrderByID(int orderId) throws RecordNotFoundException 
+	{
+			return orderRepository.getOne(orderId);
 	}
 	
 
 	@Override
 	public Order saveNewOrder(Order order) 
 	{
-		// TODO Auto-generated method stub
 		return orderRepository.save(order);
 	}
 

@@ -29,14 +29,20 @@
                     <tr>
                         <th>Name</th>
                         <th>price</th>
-                    
+                    	<th colspan="2">Actions</th>		
                     </tr>
                 </thead>
                 <tbody>
                 <tr th:each="product : ${products}">
                     <td th:text="${product.productName}"></td>
                     <td th:text="${product.price}"></td>
-                   
+                    
+                  <td colspan="2">
+					<a th:href="@{'/admin/products/edit/' + ${product.product_id}}">Edit</a>			
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a  th:href="@{'/admin/products/delete/' + ${product.product_id}}">Delete</a>
+				</td>
+				
                 </tr>
             </tbody>
         </table>

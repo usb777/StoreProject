@@ -30,12 +30,11 @@ public class UserService implements IUserService
 
     private UserJPARepository userRepository;
     
-    @Autowired 
-    UserJPARepository repository;
-
+  
     @Autowired
-    public UserService( UserJPARepository ud) {
-        this.userRepository = ud;
+    public UserService( UserJPARepository userRepository) 
+    {
+        this.userRepository = userRepository;
     }
 
     @Override

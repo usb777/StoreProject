@@ -24,25 +24,25 @@ import com.store.services.UserService;
 @RequestMapping("/users")
 public class UsersController 
 {
-	private UserService us;
+	private UserService userService;
 	
 	 @Autowired
-	    public UsersController(UserService us)
+	    public UsersController(UserService userService)
 	 {
-	        this.us = us;
+	        this.userService = userService;
 	  }
 	 
 	  @GetMapping
-	    public ResponseEntity<List<User>> getAllUsers() {
-	        return new ResponseEntity(us.getUsers(), HttpStatus.OK);
+	    public ResponseEntity<List<User>> getAllUsers() 
+	    {
+	        return new ResponseEntity(userService.getUsers(), HttpStatus.OK);
 	    }
 	  
 	  @GetMapping("/{id}")
-		public ResponseEntity getUserById(@PathVariable int id) {
-			if(id == 0 ) {
-				return new ResponseEntity<>("Id must not be 0", HttpStatus.BAD_REQUEST);
-			}
-			return new ResponseEntity<User>(us.getUserByID(id), HttpStatus.OK);
+		public ResponseEntity getUserById(@PathVariable int id) 
+	    {
+			if(id == 0 ) {		return new ResponseEntity<>("Id must not be 0", HttpStatus.BAD_REQUEST);			}
+			return new ResponseEntity<User>(userService.getUserByID(id), HttpStatus.OK);
 		}
 	 
 	  
@@ -54,7 +54,7 @@ public class UsersController
 	        {
 	            return new ResponseEntity("Id must be 0", HttpStatus.BAD_REQUEST);
 	        }
-	        return new ResponseEntity(us.saveNewUser(u), HttpStatus.OK);
+	        return new ResponseEntity(userService.saveNewUser(u), HttpStatus.OK);
 	    } // postMapping
 	    
 	    
@@ -65,13 +65,13 @@ public class UsersController
 	        if (u.getUser_id() == 0) {
 	            return new ResponseEntity("User id must not be 0", HttpStatus.BAD_REQUEST);
 	        }
-	        return new ResponseEntity(us.updateUser(u), HttpStatus.CREATED);
+	        return new ResponseEntity(userService.updateUser(u), HttpStatus.CREATED);
 	    }
 
 	    @DeleteMapping("{id}")
 	    public  ResponseEntity<Object> deleteUser(@PathVariable int id)
 	    {    	
-	    	  us.deleteUser(id);
+	    	  userService.deleteUser(id);
 	    	  return new ResponseEntity( HttpStatus.OK);  	
 	    	
 	        

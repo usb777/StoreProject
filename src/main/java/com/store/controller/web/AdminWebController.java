@@ -1,4 +1,4 @@
-package com.store.controller;
+package com.store.controller.web;
 
 import java.util.List;
 
@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.store.model.Product;
 import com.store.model.User;
+import com.store.services.CartService;
+import com.store.services.OrderService;
 import com.store.services.ProductService;
 import com.store.services.UserService;
 
@@ -24,7 +26,14 @@ public class AdminWebController
 	private UserService userService;
 	
 	 @Autowired
-	    private ProductService productService;
+	    private ProductService productService;	 
+	 
+	 @Autowired
+	    private CartService cartService;
+	 
+	 @Autowired
+	    private OrderService orderService;
+	 
 	
 	 @Autowired
 	    public AdminWebController(UserService userService)
@@ -40,30 +49,28 @@ public class AdminWebController
 		    return "admin/users";
 	    }
 	 
-	 /*
-	 
-	   @GetMapping("/admin/products")
-	    public ResponseEntity < List < Product >> getProducts() 
-	    {
-	        return ResponseEntity.ok().body(productService.getProducts());
-	    }
-	   */
-	   
+	
 	   //View Layer
 	   @RequestMapping("/products")
-	   public String showProductList(Model model) {
-		   
+	   public String showProductList(Model model)
+	   {		   
 		   model.addAttribute("products", productService.getProducts());
-		    return "admin/products";
-		   
+		   return "admin/products";		   
 	   }
 	   
+	   @RequestMapping("/carts")
+	   public String showCartList(Model model) 
+	   {		   
+		   model.addAttribute("carts", cartService.getCarts()   );
+		   return "admin/carts";		   
+	   }
+	 
+	   @RequestMapping("/orders")
+	   public String showOrderList(Model model) 
+	   {		   
+		   model.addAttribute("orders", orderService.getOrders()  );
+		   return "admin/orders";		   
+	   }
 	 
 	 
-	 
-	 
-	 
-	 
-	 
-
 }

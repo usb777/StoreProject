@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@Table
 public class Cart 
 {
 	
@@ -22,10 +23,10 @@ public class Cart
 	int cart_id;    //1	
 		
 	@Column
-	int user_id;    //2
+	int user_id;    //2  JOIN Column
 	
 	@Column
-	int product_id;  //3
+	int product_id;  //3  JOIN Column
 	 
 	@Column
 	Date date_added;   //4

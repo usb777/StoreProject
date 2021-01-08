@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>User Info</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<body>
+
+
+    <div class="container my-2">
+    <div class="card">
+    <div class="card-body">
+        <div  class="container my-5">
+          
+        <H2 align="center"> User Info  </H2>  
+        <!-- 
+        
+              user_id=1, 
+ 			 username=dzen, 
+ 			 name=Dzmitry S, 
+  			 age=37,
+    		dateof_birth=2000-01-04 13:47:58.0,
+  			
+  			job=best job,
+  			email=dz@gmail.com, 
+  			
+   			 is_enabled=true, 
+    		password=1234, 
+   			 usertype_id=1
+        
+         -->
+        
+        
+       Username: <span align="center" th:text="${user.username}"> </span> <br>
+	   Name: <span align="center" th:text="${user.name}"> </span> <br>
+	   Age: <span align="center" th:text="${user.age}"> </span> <br>
+       Date of birthday: <span align="center" th:text="${user.dateof_birth}"> </span> <br>
+	   Job: <span align="center" th:text="${user.job}"> </span> <br>
+       Email: <span align="center" th:text="${user.email}"> </span> <br>
+       <!--   is_enabled -->
+	   Password: <span align="center" th:text="${user.password}"> </span> <br>
+	   	  <!--//   usertype_id=1 //-->
+	   	 <a href="user/info-update"> Change Info </a>
+        </div>
+    </div>
+    </div>
+    </div>
+    
+    
+</body>
+
+</html>

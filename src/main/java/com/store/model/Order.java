@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "orders")
 public class Order
 {
 
@@ -16,19 +18,19 @@ public class Order
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	@Column(name = "order_id")
-	int order_id;
+	int order_id;  //1
 	
 	@Column
-	int user_id;
+	int user_id; //2 
 	
 	@Column
-	int product_id;
+	int product_id;  //3
 	
 	@Column
-	Date order_date;
+	Date order_date;  //4
 	
 	@Column
-	int quantity;
+	int quantity;  //5
 	
 	public Order() 
 	{
