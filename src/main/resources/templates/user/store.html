@@ -14,7 +14,7 @@
 </head>
 
 <body>
-
+UserId: <span th:text="${userId}" ></span> <br>
 
   <div class="container my-5"    th:switch="${products}">
   
@@ -44,8 +44,8 @@
    
 </div> <!-- row -->
 
-</div>
-</div>
+</div>  <!-- th:case="*" -->
+</div> <!--container  -->
     
 </body>
 

@@ -54,14 +54,14 @@ public class UserWebController
 	    }
 	 
 */
-		@RequestMapping(path = { "/info/{id}"})
-		public String editEmployeeById(Model model, @PathVariable("id") int id) 	throws RecordNotFoundException 
+		@RequestMapping(path = { "/info/{userId}"})
+		public String editEmployeeById(Model model, @PathVariable("userId") int userId) 	throws RecordNotFoundException 
 		{ 
 		
-			if (id>0) 
+			if (userId>0) 
 			{
 			//	EmployeeEntity entity = service.getEmployeeById(id.get());
-				model.addAttribute("user", userService.getUserByID(id));
+				model.addAttribute("user", userService.getUserByID(userId));
 			} 
 			return "user/info";
 		}
@@ -84,9 +84,10 @@ public class UserWebController
 	 
 	   
 
-	   @RequestMapping("/store")
-	   public String showStoreProduct(Model model) 
-	   {		   
+	   @RequestMapping("/{userId}/store")
+	   public String showStoreProduct(Model model, @PathVariable("userId") int userId) 
+	   {	
+		   model.addAttribute("userId", userId);
 		   model.addAttribute("products", productService.getProducts());
 		   return "user/store";		   
 	   }
