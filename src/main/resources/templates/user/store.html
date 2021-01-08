@@ -31,8 +31,9 @@ UserId: <span th:text="${userId}" ></span> <br>
            		<div class="card border-info mb-3" style="max-width: 18rem;">
   				<div class="card-header">Menu</div>
   					<div class="card-body">
-    					<h5 class="card-title">Info card title</h5>
-    					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    					
+    					<p class="card-text"><a th:href="@{'/user/info/' + ${userId}}">User info</a></p>
+    					<p class="card-text"><a href="#">logout</a></p>
   					</div>
 					</div>
 			</div>
@@ -48,7 +49,7 @@ UserId: <span th:text="${userId}" ></span> <br>
     
    <div class="col-sm-2"  th:each="product : ${products}">
    <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-  <div class="card-header">Product</div>
+  <div class="card-header">Product  <span th:text="${product.product_id}"></span> </div>
   <div class="card-body">
     <h5 class="card-title"><span th:text="${product.productName}"></span></h5>
     <p class="card-text"><span th:text="${product.description}"></span></p>
@@ -78,10 +79,23 @@ UserId: <span th:text="${userId}" ></span> <br>
   					<div class="card-header">Cart</div>
   					
   					<div class="card-body">
-  					    <h5 class="card-title"><a href="#">go to cart</a></h5>
-    					
-    					<p class="card-text">3 items in quart</p>
-    					<h5 class="card-title"> Total:  $ 200</h5>
+  					    <h5 class="card-title"><a href="#">Checkout</a></h5>
+  					    
+  					    
+  					     <div th:switch="${carts}">
+   				<h5 th:case="null">No items yet!</h5>
+        		<div th:case="*">
+                	<div th:each="cart : ${carts}">
+                    	<span th:text="${cart.product_id}"></span>                   
+                </div>      
+		 	</div> 
+		 	</div>     
+  
+  					    
+  					   
+  					    
+    					<p class="card-text"> <span th:text="${cartItems}" ></span> items in cart</p>
+    					<h5 class="card-title"> Total:  $ <span th:text="${totalPrice}" ></span></h5>
   					</div>
 					</div>
 				</div>

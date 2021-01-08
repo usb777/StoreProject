@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.store.dao_repositories.CartJPARepository;
 import com.store.exception.RecordNotFoundException;
 import com.store.model.Cart;
 import com.store.model.Product;
@@ -46,7 +47,7 @@ public class UserWebController
 	 @Autowired
 	    private OrderService orderService;
 	 
-	
+	 private CartJPARepository cartRepository;
 	
 	
 /*	
@@ -91,13 +92,19 @@ public class UserWebController
 	   @RequestMapping("/{userId}/store")
 	   public String showStoreProduct(Model model, @PathVariable("userId") int userId) 
 	   {	
+		   List < Cart > carts = cartService.findCartsByUserId(userId);
+		   model.addAttribute("carts", carts    );
+		   
+		   Object items = cartService.countCartItems(userId);
+		   model.addAttribute("cartItems",items );
+		   
+		   model.addAttribute("totalPrice",cartService.totalCartPrice(userId) );
+		   
 		   model.addAttribute("userId", userId);
 		   model.addAttribute("products", productService.getProducts());
+		  
 		   return "user/store";		   
 	   }
-	   
-	   
-	   
 	   
 	   
 	   @RequestMapping("/addCart/{userId}/{productId}")
@@ -106,12 +113,22 @@ public class UserWebController
 		   Cart cart = new Cart( userId, productId, new Date(), 1);
 		   cartService.saveNewCart(cart);
 		   
+		   
+		   
+		   List < Cart > carts = cartService.findCartsByUserId(userId);
+		   model.addAttribute("carts", carts    );
+		   
+		   Object items = cartService.countCartItems(userId);
+		   model.addAttribute("cartItems",items );
+		   
+		   model.addAttribute("totalPrice",cartService.totalCartPrice(userId) );
+		   
+		   
 		   model.addAttribute("userId", userId);		   
 		   model.addAttribute("products", productService.getProducts());
 		   
-		   //return "user/store";		
-		   return "user/store";	
-		   
+		 
+		   return "user/store";			   
 		   
 	   }
 	   

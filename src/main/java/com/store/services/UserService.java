@@ -124,10 +124,10 @@ public class UserService implements IUserService
 	    }
 	    
 	    
-	   public Collection<User> findAllActiveUsers()
-	    { userRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
-	    	 List arr = new ArrayList();
-	    	return arr;
+	   public List<User> findAllActiveUsers()
+	    { 
+	    	
+	    	return userRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
 	    }
 
 

@@ -1,17 +1,23 @@
 package com.store.services;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.Column;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.store.dao_repositories.CartJPARepository;
 import com.store.exception.RecordNotFoundException;
 import com.store.model.Cart;
+import com.store.model.User;
 
 
 @Service
@@ -31,7 +37,29 @@ public class CartService implements ICartService
 	        this.cartRepository = cartRepository;
 	    }
 	    
+	   
 	    
+	    public List<Cart> findCartsByUserId(int user_id)
+	    {
+	    	return cartRepository.findCartsByUserId(user_id);
+	    }
+	    
+	    public Object countCartItems( int user_id)
+	    {    
+	    	return cartRepository.countCartItems(user_id);
+	    }
+	    
+	    public Object totalCartPrice( int user_id)
+	    {
+	    	return cartRepository.totalCartPrice(user_id);
+	    }
+	    
+	  /*  
+	    public List<Cart> findCartsByUserId(int user_id)
+	    {	
+	    	return cartRepository.findAll();
+	    }    
+	    */
 
 	@Override
 	public List<Cart> getCarts()
