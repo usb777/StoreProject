@@ -1,5 +1,6 @@
 package com.store.controller.web;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.store.exception.RecordNotFoundException;
-
+import com.store.model.Cart;
 import com.store.model.Product;
 import com.store.model.User;
 import com.store.services.CartService;
@@ -30,6 +31,13 @@ public class UserWebController
 	private UserService userService;
 	
 	 @Autowired
+	    public UserWebController(UserService userService)
+	 {
+	        this.userService = userService;
+	  }
+	
+	
+	 @Autowired
 	    private ProductService productService;	 
 	 
 	 @Autowired
@@ -39,11 +47,7 @@ public class UserWebController
 	    private OrderService orderService;
 	 
 	
-	 @Autowired
-	    public UserWebController(UserService userService)
-	 {
-	        this.userService = userService;
-	  }
+	
 	
 /*	
 	 @RequestMapping("/info")
@@ -91,6 +95,27 @@ public class UserWebController
 		   model.addAttribute("products", productService.getProducts());
 		   return "user/store";		   
 	   }
+	   
+	   
+	   
+	   
+	   
+	   @RequestMapping("/addCart/{userId}/{productId}")
+	   public String addProductToCart(Model model, @PathVariable("userId") int userId, @PathVariable("productId") int productId ) 
+	   {	
+		   Cart cart = new Cart( userId, productId, new Date(), 1);
+		   cartService.saveNewCart(cart);
+		   
+		   model.addAttribute("userId", userId);		   
+		   model.addAttribute("products", productService.getProducts());
+		   
+		   //return "user/store";		
+		   return "user/store";	
+		   
+		   
+	   }
+	   
+	   
 	   
 	   
 	   

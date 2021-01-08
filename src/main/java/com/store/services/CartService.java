@@ -70,9 +70,8 @@ public class CartService implements ICartService
 			  */
 			 oldCart.setUser_id(cart.getUser_id());   //2
 			 oldCart.setProduct_id(cart.getProduct_id());  //3
-			 oldCart.setDate_added(new Date()); //4
-			 oldCart.setEmail(cart.getEmail()); //5
-			 oldCart.setQuantity(cart.getQuantity());  //6
+			 oldCart.setDate_added(new Date()); //4			
+			 oldCart.setQuantity(cart.getQuantity());  //5
  	        }
 	        return cartRepository.save(oldCart);
 		

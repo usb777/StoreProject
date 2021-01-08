@@ -31,11 +31,10 @@ public class Cart
 	@Column
 	Date date_added;   //4
 	
-	@Column
-	String email;           //5
+
 	
 	@Column
-	int quantity;           //6
+	int quantity;           //5
 
 	public Cart()  
 	{
@@ -43,18 +42,28 @@ public class Cart
 	}	
 		
 	
-	public Cart(int cart_id, int user_id, int product_id, Date date_added, String email, int quantity) 
+	public Cart(int cart_id, int user_id, int product_id, Date date_added,  int quantity) 
 	{
 		super();
 		this.cart_id = cart_id;
 		this.user_id = user_id;
 		this.product_id = product_id;
 		this.date_added = date_added;
-		this.email = email;
+	
 		this.quantity = quantity;
 	}
 
-
+	public Cart( int user_id, int product_id, Date date_added,  int quantity) 
+	{
+		super();		
+		this.user_id = user_id;
+		this.product_id = product_id;
+		this.date_added = date_added;
+	
+		this.quantity = quantity;
+	}
+	
+	
 	public int getCart_id() {
 		return cart_id;
 	}
@@ -95,15 +104,6 @@ public class Cart
 	}
 
 
-	public String getEmail() {
-		return email;
-	}
-
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 
 	public int getQuantity() {
 		return quantity;
@@ -118,7 +118,7 @@ public class Cart
 	@Override
 	public String toString() {
 		return "Cart [cart_id=" + cart_id + ", user_id=" + user_id + ", product_id=" + product_id + ", date_added="
-				+ date_added + ", email=" + email + ", quantity=" + quantity + "]";
+				+ date_added + ", quantity=" + quantity + "]";
 	}
 	
 	
