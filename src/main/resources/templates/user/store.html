@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +10,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   
 </head>
-
 <body>
 UserId: <span th:text="${userId}" ></span> <br>
 
@@ -24,22 +22,38 @@ UserId: <span th:text="${userId}" ></span> <br>
 
 
 	<div class="row">
+	
+	
 		<div class="col-md-2">
-			<div class="row">
+		<div class="row"  >
+		
+		<!--// 
+		   <div th:replace="~{fragments/template :: menu}">		  
+		   </div> 
+		    //-->
+		   
+		   
+		   
+	   <div >  <!-- Menu -->
 			
 			<div class="col-md-12">
            		<div class="card border-info mb-3" style="max-width: 18rem;">
   				<div class="card-header">Menu</div>
   					<div class="card-body">
-    					
+    					<p class="card-text"><a th:href="@{'/user/' + ${userId}+'/store'}">Store</a></p>
     					<p class="card-text"><a th:href="@{'/user/info/' + ${userId}}">User info</a></p>
     					<p class="card-text"><a href="#">logout</a></p>
   					</div>
 					</div>
 			</div>
 			
-			</div>
+			</div>  <!-- Menu -->
+		   
+		   
+		</div>   
 		</div>
+		
+		
 		<div class="col-md-8"  th:switch="${products}">    <!--Content -->
 		
 		
