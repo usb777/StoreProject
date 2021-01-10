@@ -71,6 +71,14 @@ public class AdminWebController
 		   model.addAttribute("orders", orderService.getOrders()  );
 		   return "admin/orders";		   
 	   }
+	   
+	   @RequestMapping("/temp")
+	   public String showTempPage(Model model) 
+	   {		   
+		   //model.addAttribute("orders", orderService.getOrders()  );
+		   return "admin/temp";		   
+	   }
+	 
 	 
 	 
 }

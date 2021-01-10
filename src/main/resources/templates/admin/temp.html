@@ -17,7 +17,7 @@ UserId: <span th:text="${userId}" ></span> <br>
     <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-             <H2 align="center">Store</H2><br><br>
+             <H2 align="center">Admin Page</H2><br><br>
 		</div>
 	</div>
 
@@ -35,48 +35,20 @@ UserId: <span th:text="${userId}" ></span> <br>
 		  
 		 <div class="row">
 		 
-		 <div class="col-md-3"  >&nbsp; </div>
-		 <div class="col-md-6"  > 
+			 <div class="col-md-3"  >&nbsp; </div>
+			 <div class="col-md-6"  > 
 		 
-                <H2 align="center"> User Info  </H2>  
-        <!-- 
-        
-              user_id=1, 
- 			 username=dzen, 
- 			 name=Dzmitry S, 
-  			 age=37,
-    		dateof_birth=2000-01-04 13:47:58.0,
-  			
-  			job=best job,
-  			email=dz@gmail.com, 
-  			
-   			 is_enabled=true, 
-    		password=1234, 
-   			 usertype_id=1
-        
-         -->
-        
-        
-       Username: <span align="center" th:text="${user.username}"> </span> <br>
-	   Name: <span align="center" th:text="${user.name}"> </span> <br>
-	   Age: <span align="center" th:text="${user.age}"> </span> <br>
-       Date of birthday: <span align="center" th:text="${user.dateof_birth}"> </span> <br>
-	   Job: <span align="center" th:text="${user.job}"> </span> <br>
-       Email: <span align="center" th:text="${user.email}"> </span> <br>
-       <!--   is_enabled -->
-	   Password: <span align="center" th:text="${user.password}"> </span> <br>
-	   	  <!--//   usertype_id=1 //-->
-	   	 <a href="user/info-update"> Change Info </a>  
-	   	 </div>
-	   	  <div class="col-md-3"  >&nbsp; </div>
-	   	 </div>
+                <H2 align="center">Info  </H2>  
+ 
+	   			 </div>
+	   	 		 <div class="col-md-3"  >&nbsp; </div>
+	   	</div>
       
 		</div>     <!--End Content -->
 		
 		
 		<div class="col-md-2">   <!-- Cart -->	
-		   	<div class="row" th:replace="~{fragments/template :: cart}" >			
-			</div>   <!-- END row Cart -->	      
+		   <!-- Cart was here -->
 		</div>	    <!--col-md-2 End Cart -->	
 		
 	</div>    <!--Main row -->
