@@ -32,6 +32,29 @@
 			</div>  <!-- Menu -->
 			
 			
+		   <div th:fragment="admin-menu">  <!-- ADMIN Menu -->
+			
+			<div class="col-md-12">
+           		<div class="card border-info mb-3" style="max-width: 18rem;">
+  				<div class="card-header">Menu</div>
+  					<div class="card-body">
+    						<p class="card-text"><a th:href="@{'/admin/users'}">users</a></p>
+    						<p class="card-text"><a th:href="@{'/admin/products'}">products</a></p>
+    						<p class="card-text"><a th:href="@{'/admin/carts'}">carts</a></p>
+    						<p class="card-text"><a th:href="@{'/admin/orders'}">orders</a></p>
+    						<p class="card-text"><a th:href="@{'/admin/logout'}">logout</a></p>
+    					
+    					
+    					
+  					</div>
+					</div>
+			</div>
+			
+			</div>  <!-- Admin Menu -->	
+			
+			
+			
+			
 		
 		<div class="row" th:fragment="cart" >   <!-- cart R-->
 		
@@ -58,7 +81,16 @@
 					</div>
 				</div>	
 			 <!-- cart R-->
-			</div>	 
+			</div>	
+			
+			
+			
+			
+			
+			
+			
+			
+			 
 			
 		
 	<div class="row"  th:fragment="footer">
