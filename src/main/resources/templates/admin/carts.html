@@ -17,7 +17,7 @@ UserId: <span th:text="${userId}" ></span> <br>
     <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-             <H2 align="center">Admin Page</H2><br><br>
+             <H2 align="center">Admin Carts</H2><br><br>
 		</div>
 	</div>
 
@@ -38,7 +38,12 @@ UserId: <span th:text="${userId}" ></span> <br>
     <h2 th:case="null">No Carts yet!</h2>
         <div th:case="*">
             <h2 align="center">Carts</h2>
-            <table border="1">
+            
+            
+                 
+        <div class="table-responsive"> 
+            
+            <table class="table table-striped">
                 <thead>
                     <tr>
                     
@@ -61,8 +66,7 @@ UserId: <span th:text="${userId}" ></span> <br>
                     	<th>cart id</th>
                         <th>user id</th>
                         <th>product id</th>
-                    	<th>date added</th>  
-                    	<th>email</th> 
+                    	<th>date added</th>                      
                     	<th>quantity</th>
                     </tr>
                 </thead>
@@ -71,12 +75,13 @@ UserId: <span th:text="${userId}" ></span> <br>
                     <td th:text="${cart.cart_id}"></td>
                     <td th:text="${cart.user_id}"></td>                    
                     <td th:text="${cart.product_id}"></td>
-                    <td th:text="${cart.date_added}"></td>
-                    <td th:text="${cart.email}"></td>                    
+                    <td th:text="${cart.date_added}"></td>     
                     <td th:text="${cart.quantity}"></td>                   
                 </tr>
             </tbody>
         </table>
+        
+        </div>   
     </div>      
    
 </div>

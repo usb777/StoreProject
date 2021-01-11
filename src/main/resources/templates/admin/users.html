@@ -38,7 +38,10 @@ UserId: <span th:text="${userId}" ></span> <br>
     <h2 th:case="null">No User yet!</h2>
         <div th:case="*">
             <h2 align="center">Users</h2>
-            <table border="1">
+            
+        
+        <div class="table-responsive">    
+            <table class="table table-striped">
                 <thead>
                     <tr>
                     	<th>id</th>
@@ -69,6 +72,9 @@ UserId: <span th:text="${userId}" ></span> <br>
                 </tr>
             </tbody>
         </table>
+        
+           </div>  
+        
     </div>      
    
 </div>
