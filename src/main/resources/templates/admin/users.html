@@ -54,6 +54,7 @@ UserId: <span th:text="${userId}" ></span> <br>
                     	<th>Password</th>
                     	<th>usertype</th>
                     	<th>Address</th>
+                    		<th colspan="2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,6 +70,13 @@ UserId: <span th:text="${userId}" ></span> <br>
                     <td th:text="${user.password}"></td>
                     <td th:text="${user.usertype_id}"></td>
                      <td th:text="${user.address.address} " ></td>
+                     
+                        <td colspan="2">
+					<a th:href="@{'/admin/users/edit/' + ${user.user_id}}">Edit</a>			
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a  th:href="@{'/admin/users/delete/' + ${user.user_id}}">Delete</a>
+				</td>
+                     
                 </tr>
             </tbody>
         </table>

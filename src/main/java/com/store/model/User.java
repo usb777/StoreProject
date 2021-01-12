@@ -22,32 +22,32 @@ public class User
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
-	@Column(name = "user_id")
+	@Column(name = "user_id") //  
 	
 	int user_id;	
 	
-	@Column(name = "dateof_birth")
+	@Column(name = "dateof_birth")//
 	Date dateof_birth;
 	
-	@Column(name = "job")
+	@Column(name = "job") //
 	String job;
 	
-	@Column(name = "name")
+	@Column(name = "name")  //
 	String name;
 	
-	@Column(name = "age")
+	@Column(name = "age") //
 	int age;
 	
-	@Column(name = "email")
+	@Column(name = "email")//
 	String email;
 	
-	@Column(name = "is_enabled")
+	@Column(name = "is_enabled")//
 	boolean is_enabled;
 	
-	@Column(name = "password")
+	@Column(name = "password")//
 	String password;
 	
-	@Column(name = "username")
+	@Column(name = "username")  //
 	String username;
 	
 	
@@ -60,7 +60,7 @@ public class User
 	*/
 	
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    @JoinColumn(name = "address_id", referencedColumnName = "id")	
     private Address address;
 	
 	

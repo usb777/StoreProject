@@ -46,6 +46,7 @@ UserId: <span th:text="${userId}" ></span> <br>
                     <tr>
                         <th>Name</th>
                         <th>price</th>
+                        
                     	<th colspan="2">Actions</th>		
                     </tr>
                 </thead>
@@ -59,6 +60,9 @@ UserId: <span th:text="${userId}" ></span> <br>
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<a  th:href="@{'/admin/products/delete/' + ${product.product_id}}">Delete</a>
 				</td>
+				
+				
+				
 				
                 </tr>
             </tbody>

@@ -8,7 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -78,6 +81,35 @@ public class AdminWebController
 		   //model.addAttribute("orders", orderService.getOrders()  );
 		   return "admin/temp";		   
 	   }
+	   
+	   
+	   @RequestMapping("/users/delete/{id}")
+		public String deleteUser(@PathVariable(name = "id") int id) {
+		   userService.deleteUser(id);
+			
+			return "redirect:/admin/users";
+		}
+	   
+	   
+	   @RequestMapping("/users/edit/{id}")
+		public ModelAndView showEditUserForm(@PathVariable(name = "id") int id) 
+	   {
+			ModelAndView mav = new ModelAndView("/admin/edit-user");   //html page 
+			User user =  userService.getUserByID(id);
+			mav.addObject("user", user);
+			
+			return mav;
+		}	
+	   
+	   @RequestMapping(value = "/users/save", method = RequestMethod.POST)
+		public String saveUser(@ModelAttribute("user") User user) 
+	   {   
+		  
+		   userService.saveNewUser(user);			
+			return "redirect:/";
+		}
+	   
+	   
 	 
 	 
 	 

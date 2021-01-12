@@ -68,6 +68,7 @@ UserId: <span th:text="${userId}" ></span> <br>
                         <th>product id</th>
                     	<th>date added</th>                      
                     	<th>quantity</th>
+                    	<th colspan="2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -76,7 +77,16 @@ UserId: <span th:text="${userId}" ></span> <br>
                     <td th:text="${cart.user_id}"></td>                    
                     <td th:text="${cart.product_id}"></td>
                     <td th:text="${cart.date_added}"></td>     
-                    <td th:text="${cart.quantity}"></td>                   
+                    <td th:text="${cart.quantity}"></td>    
+                    
+                    
+                      <td colspan="2">
+					<a th:href="@{'/admin/carts/edit/' + ${cart.cart_id}}">Edit</a>			
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a  th:href="@{'/admin/carts/delete/' + ${cart.cart_id}}">Delete</a>
+				</td>
+                    
+                                   
                 </tr>
             </tbody>
         </table>
