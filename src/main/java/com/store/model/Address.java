@@ -34,9 +34,11 @@ public class Address
 	@Column
 	int zipcode ;
 	
+	
+/*	
 	@Column
 	int user_id ;
-	
+	*/
 	
 	@OneToOne(mappedBy = "address")
     private User user;
@@ -47,7 +49,7 @@ public class Address
 	}
 	
 
-	public Address(int id, String address, String phonenumber, String city, String state, String country, int zipcode,	int user_id) 
+	public Address(int id, String address, String phonenumber, String city, String state, String country, int zipcode /*,	int user_id*/) 
 	{
 		super();
 		this.id = id;
@@ -57,12 +59,12 @@ public class Address
 		this.state = state;
 		this.country = country;
 		this.zipcode = zipcode;
-		this.user_id = user_id;
+		//this.user_id = user_id;
 	}
 
 	
 
-	public Address( String address, String phonenumber, String city, String state, String country, int zipcode,	int user_id) 
+	public Address( String address, String phonenumber, String city, String state, String country, int zipcode/*,	int user_id*/) 
 	{
 		super();
 		
@@ -72,7 +74,7 @@ public class Address
 		this.state = state;
 		this.country = country;
 		this.zipcode = zipcode;
-		this.user_id = user_id;
+	//	this.user_id = user_id;
 	}
 
 	
@@ -146,6 +148,7 @@ public class Address
 		this.zipcode = zipcode;
 	}
 
+	/*
 
 	public int getUser_id() {
 		return user_id;
@@ -156,11 +159,11 @@ public class Address
 		this.user_id = user_id;
 	}
 
-
+*/
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", address=" + address + ", phonenumber=" + phonenumber + ", city=" + city
-				+ ", state=" + state + ", country=" + country + ", zipcode=" + zipcode + ", user_id=" + user_id + "]";
+				+ ", state=" + state + ", country=" + country + ", zipcode=" + zipcode +/* ", user_id=" + user_id + */"]";
 	}
 
 

@@ -88,13 +88,31 @@ UserId: <span th:text="${userId}" ></span> <br>
 					<td><input type="text" th:field="*{usertype_id}" /></td>
 				</tr>
 				
+				<!-- Cannot to retrive from here this object -->
 				<tr>
 					<td>Address:</td>
-					<td><input type="text" th:field="*{address.address}" disabled /></td>
+					<td>
+					
+					<span th:text="*{address.address}"></span> 
+					<span th:text="*{address.city}"></span> 
+					<span th:text="*{address.state}"></span>
+					<span th:text="*{address.country}"></span>
+					<span th:text="*{address.zipcode}"></span> 
+					<a href="#"> Change address</a>
+					</td>
 				</tr>
-				
+				<!--Another way to retrieve Address -->
+				<input type="hidden" th:field="*{address}"/>
+			<!--
+			<input type="hidden" th:field="*{address.id}"/>
+			<input type="hidden" th:field="*{address.address}"/>
+			<input type="hidden" th:field="*{address.phonenumber}"/>
+			<input type="hidden" th:field="*{address.city}"/>
+			<input type="hidden" th:field="*{address.state}"/>
+			<input type="hidden" th:field="*{address.country}"/>
+			<input type="hidden" th:field="*{address.zipcode}"/>
 			
-			
+			 -->
 				<tr>
 					<td colspan="2"><button type="submit">Save</button></td>
 				</tr>

@@ -208,7 +208,7 @@ public class User
 	public String toString() {
 		return "User [user_id=" + user_id + ", dateof_birth=" + dateof_birth + ", job=" + job + ", name=" + name
 				+ ", age=" + age + ", email=" + email + ", is_enabled=" + is_enabled + ", password=" + password
-				+ ", username=" + username + ", usertype_id=" + usertype_id  /* + ", address_id=" + address_id   */+"]";
+				+ ", username=" + username + ", usertype_id=" + usertype_id   + ", address=" + address.id   +"]";
 	}
 	
 

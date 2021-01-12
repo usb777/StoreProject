@@ -106,16 +106,27 @@ public class AdminWebController
 			ModelAndView mav = new ModelAndView("/admin/edit-user");   //html page 
 			User user =  userService.getUserByID(id);
 			mav.addObject("user", user);
-			
+			mav.addObject("user_address", user.getAddress());
+			    System.out.println(user.getAddress());
 			return mav;
 		}	
 	   
+	   //save edited user
 	   @RequestMapping(value = "/users/save", method = RequestMethod.POST)
-		public String saveUser(@ModelAttribute("user") User user) 
+		public String saveUser(@ModelAttribute("user") User user) throws RecordNotFoundException 
 	   {   
-		  		  
-		  userService.saveNewUser(user);			
-		  return "redirect:/admin/users";
+		 		   
+		   System.out.println("======Addr==========");
+		   System.out.println(user.getAddress());
+		   System.out.println("================");
+		   
+		 //  Address  address = addressService.getAddressByID();
+		   
+		   
+		   //user.setAddress();
+		   
+		    userService.saveNewUser(user);			
+		    return "redirect:/admin/users";
 		}
 	   
 	   
@@ -133,10 +144,9 @@ public class AdminWebController
 	
 	   @RequestMapping(value = "/users/save-new", method = RequestMethod.POST)
 	 		public String saveNewUser(@ModelAttribute("user") User user) throws RecordNotFoundException 
-	 	   {   AddressService addressService = new AddressService();
-		   
-		       Address  address = addressService.getAddressByID(4);
-		       
+	 	   {
+		       // automatically add new Address in DB
+		       Address address = new Address("your street and apt", "your phonenumber", "your city", "your state", "your country", 11111);
 		       
 	 		  		  user.setAddress(address);
 	 		  userService.saveNewUser(user);			
