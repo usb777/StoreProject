@@ -47,7 +47,17 @@ public class Order
 		this.order_date = order_date;
 		this.quantity = quantity;
 	}
-
+	
+	
+	public Order( int user_id, int product_id, Date order_date, int quantity)
+	{
+		super();		
+		this.user_id = user_id;
+		this.product_id = product_id;
+		this.order_date = order_date;
+		this.quantity = quantity;
+	}
+	
 	public int getOrder_id() {
 		return order_id;
 	}

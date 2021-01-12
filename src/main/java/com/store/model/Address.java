@@ -60,6 +60,22 @@ public class Address
 		this.user_id = user_id;
 	}
 
+	
+
+	public Address( String address, String phonenumber, String city, String state, String country, int zipcode,	int user_id) 
+	{
+		super();
+		
+		this.address = address;
+		this.phonenumber = phonenumber;
+		this.city = city;
+		this.state = state;
+		this.country = country;
+		this.zipcode = zipcode;
+		this.user_id = user_id;
+	}
+
+	
 
 	public int getId() {
 		return id;

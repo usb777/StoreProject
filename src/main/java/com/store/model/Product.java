@@ -58,6 +58,19 @@ public class Product {
 		this.quantity = quantity;
 	}
 
+	public Product( String productName, 	byte[] productimage, String description, double price,	int quantity) 
+	{
+		super();
+		
+		this.productName = productName;
+		this.productimage = productimage;
+		this.description = description;
+		this.price = price;
+		this.quantity = quantity;
+	}
+
+	
+	
 	public int getProduct_id() {
 		return product_id;
 	}

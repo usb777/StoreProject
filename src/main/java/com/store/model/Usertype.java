@@ -36,7 +36,12 @@ public class Usertype
 		this.usertype_id = usertype_id;
 		this.usertype_name = usertype_name;
 	}
-
+	
+	public Usertype( String usertype_name) 
+	{
+		super();		
+		this.usertype_name = usertype_name;
+	}
 
 
 	public int getUsertype_id() {
