@@ -32,14 +32,15 @@ UserId: <span th:text="${userId}" ></span> <br>
 
 		
 		<div class="col-md-8"  >    <!--Content -->
-		  
+	
+	
 		        
          <div th:switch="${users}">
     <h2 th:case="null">No User yet!</h2>
         <div th:case="*">
             <h2 align="center">Users</h2>
             
-        
+    <a th:href="@{'/admin/users/new'}">Add New User</a>	      
         <div class="table-responsive">    
             <table class="table table-striped">
                 <thead>
@@ -53,7 +54,7 @@ UserId: <span th:text="${userId}" ></span> <br>
                     	<th>Username</th>
                     	<th>Password</th>
                     	<th>usertype</th>
-                    	<th>Address</th>
+                     <!--	<th>Address</th>-->
                     		<th colspan="2">Actions</th>
                     </tr>
                 </thead>
@@ -69,7 +70,7 @@ UserId: <span th:text="${userId}" ></span> <br>
                      <td th:text="${user.username}"></td>
                     <td th:text="${user.password}"></td>
                     <td th:text="${user.usertype_id}"></td>
-                     <td th:text="${user.address.address} " ></td>
+                  <!--    <td th:text="${user.address.address} " ></td>  -->
                      
                         <td colspan="2">
 					<a th:href="@{'/admin/users/edit/' + ${user.user_id}}">Edit</a>			

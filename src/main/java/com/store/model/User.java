@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -27,6 +29,7 @@ public class User
 	int user_id;	
 	
 	@Column(name = "dateof_birth")//
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date dateof_birth;
 	
 	@Column(name = "job") //
@@ -104,6 +107,23 @@ public class User
 	this.address = address;
 }
 	
+	
+	public User( Date dateof_birth, String job, String name, int age, String email, boolean is_enabled,
+			String password, String username, int usertype_id) 
+{
+	super();	
+	this.dateof_birth = dateof_birth;
+	this.job = job;
+	this.name = name;
+	this.age = age;
+	this.email = email;
+	this.is_enabled = is_enabled;
+	this.password = password;
+	this.username = username;
+	this.usertype_id = usertype_id;
+	
+
+}
 	
 	public int getUser_id() {
 		return user_id;

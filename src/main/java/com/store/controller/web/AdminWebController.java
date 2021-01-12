@@ -1,5 +1,6 @@
 package com.store.controller.web;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.store.exception.RecordNotFoundException;
+import com.store.model.Address;
 import com.store.model.Product;
 import com.store.model.User;
+import com.store.services.AddressService;
 import com.store.services.CartService;
 import com.store.services.OrderService;
 import com.store.services.ProductService;
@@ -45,6 +49,11 @@ public class AdminWebController
 	  }
 	 
 	
+	 @Autowired
+	    private AddressService addressService;
+	 
+	 
+	 
 	 @RequestMapping("/users")
 	    public String showUserList(Model model)  
 	    {
@@ -104,11 +113,35 @@ public class AdminWebController
 	   @RequestMapping(value = "/users/save", method = RequestMethod.POST)
 		public String saveUser(@ModelAttribute("user") User user) 
 	   {   
-		  
-		   userService.saveNewUser(user);			
-			return "redirect:/";
+		  		  
+		  userService.saveNewUser(user);			
+		  return "redirect:/admin/users";
 		}
 	   
+	   
+	   @RequestMapping("/users/new")
+			public String showNewUserForm(Model model) 
+		   {	
+				User user = new User();
+				user.setDateof_birth(new Date());
+				model.addAttribute("user", user);
+				return "admin/add-user";
+			}	
+	   
+	   
+	   //Address( String address, String phonenumber, String city, String state, String country, int zipcode,	int user_id) 
+	
+	   @RequestMapping(value = "/users/save-new", method = RequestMethod.POST)
+	 		public String saveNewUser(@ModelAttribute("user") User user) throws RecordNotFoundException 
+	 	   {   AddressService addressService = new AddressService();
+		   
+		       Address  address = addressService.getAddressByID(4);
+		       
+		       
+	 		  		  user.setAddress(address);
+	 		  userService.saveNewUser(user);			
+	 		  return "redirect:/admin/users";
+	 		}
 	   
 	 
 	 
