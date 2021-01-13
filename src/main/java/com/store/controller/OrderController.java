@@ -85,7 +85,9 @@ public class OrderController
 	    @PatchMapping
 	    public ResponseEntity<Order> updateOrder(@RequestBody Order order) throws RecordNotFoundException 
 	    {
-	        if (order.getUser_id() == 0) {
+	       // if (order.getUser_id() == 0) 
+	        if (order.getUser()!=null)
+	        {
 	            return new ResponseEntity("User id must not be 0", HttpStatus.BAD_REQUEST);
 	        }
 	        return new ResponseEntity(orderService.updateOrder(order), HttpStatus.CREATED);

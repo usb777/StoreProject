@@ -73,7 +73,8 @@ public class OrderService implements IOrderService
 			int quantity;   //5
 			
 			  */
-			 oldOrder.setUser_id(order.getUser_id());   		//2
+			 //oldOrder.setUser_id(order.getUser_id());   		//2
+			 oldOrder.setUser(order.getUser())	 ;
 			 oldOrder.setProduct_id(order.getProduct_id()); 	//3
 			 oldOrder.setOrder_date(new Date());                //4
 			oldOrder.setQuantity(order.getQuantity());          //5
