@@ -79,9 +79,47 @@ public class AdminWebController
 			return "redirect:/admin/products";
 		}
 	   
+	   @RequestMapping("/products/edit/{id}")
+		public ModelAndView showEditProductForm(@PathVariable(name = "id") int id) throws RecordNotFoundException 
+	   {
+			ModelAndView mav = new ModelAndView("/admin/product-edit");   //html page 
+			Product product = productService.getProductByID(id);
+			
+			mav.addObject("product", product);
+			
+			return mav;
+		}
 	   
 	   
-	
+	   @RequestMapping(value = "/products/save-edit", method = RequestMethod.POST)
+		public String saveProduct(@ModelAttribute("product") Product product) throws RecordNotFoundException 
+	   { 		   
+		    productService.saveNewProduct(product)			;
+		    return "redirect:/admin/products";
+		}
+	   
+	   
+	   
+	   @RequestMapping("/products/new")
+			public String showNewProductForm(Model model) 
+		   {	
+				Product product = new Product();
+				
+				model.addAttribute("product", product);
+				return "admin/product-add";
+			}	
+	   
+	   
+	   
+	   
+	   @RequestMapping(value = "/products/save-new", method = RequestMethod.POST)
+		public String saveNewProduct(@ModelAttribute("product") Product product) throws RecordNotFoundException 
+	   {  
+		  productService.saveNewProduct(product);			
+		  return "redirect:/admin/products";
+		}
+	   
+	   
 	 
 	   @RequestMapping("/orders")
 	   public String showOrderList(Model model) 
