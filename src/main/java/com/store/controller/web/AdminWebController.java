@@ -70,12 +70,18 @@ public class AdminWebController
 		   return "admin/products";		   
 	   }
 	   
-	   @RequestMapping("/carts")
-	   public String showCartList(Model model) 
-	   {		   
-		   model.addAttribute("carts", cartService.getCarts()   );
-		   return "admin/carts";		   
-	   }
+	   
+	   @RequestMapping("/products/delete/{id}")
+		public String deleteProduct(@PathVariable(name = "id") int id) throws RecordNotFoundException 
+      {
+		   productService.deleteProduct(id);
+			
+			return "redirect:/admin/products";
+		}
+	   
+	   
+	   
+	
 	 
 	   @RequestMapping("/orders")
 	   public String showOrderList(Model model) 
@@ -152,6 +158,24 @@ public class AdminWebController
 	 		  userService.saveNewUser(user);			
 	 		  return "redirect:/admin/users";
 	 		}
+	   
+	   
+	   @RequestMapping("/carts")
+	   public String showCartList(Model model) 
+	   {		   
+		   model.addAttribute("carts", cartService.getCarts()   );
+		   return "admin/carts";		   
+	   } 
+	   
+	   
+	   @RequestMapping("/carts/delete/{id}")
+	 		public String deleteCart(@PathVariable(name = "id") int id) throws RecordNotFoundException 
+	       {
+	 		   cartService.deleteCart(id);
+	 			
+	 			return "redirect:/admin/carts";
+	 		}
+	 	   
 	   
 	 
 	 
