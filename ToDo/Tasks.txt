@@ -10,3 +10,6 @@
  
  -----------------------Order=Cart DB design----------------------------------------------
  https://mysql.tutorials24x7.com/blog/guide-to-design-database-for-shopping-cart-in-mysql
+ 
+ details for ORDER
+ https://adityaswami89.wordpress.com/2014/09/23/repository-pattern/
