@@ -59,7 +59,7 @@ UserId: <span th:text="${userId}" ></span> <br>
                     
                     	<th>order id</th>
                         <th>user id</th>
-                        <th>product id</th>
+                        <th>product</th>
                     	<th>order date</th>  
                     	<th>quantity</th>
                     </tr>
@@ -68,7 +68,7 @@ UserId: <span th:text="${userId}" ></span> <br>
                 <tr th:each="order : ${orders}">
                     <td th:text="${order.order_id}"></td>
                     <td th:text="${order.user.username}"></td>                    
-                    <td th:text="${order.product_id}"></td>
+                    <td th:text="${order.product.productName}"></td>
                     <td th:text="${order.order_date}"></td>
                     <td th:text="${order.quantity}"></td>                   
                 </tr>

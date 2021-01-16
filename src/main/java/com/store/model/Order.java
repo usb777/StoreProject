@@ -35,16 +35,19 @@ public class Order
 	private User user;
 	
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
+	
+  /*
 	@Column
 	int product_id;  //3
+	*/
+	
+	@ManyToOne
+    @JoinColumn(name="product_id")
+	private Product product;
+	
+	
+	
+	
 	
 	@Column
 	Date order_date;  //4
@@ -58,29 +61,40 @@ public class Order
 		
 	}
 
-	public Order(int order_id,/* int user_id, */  User user, int product_id, Date order_date, int quantity)
+	public Order(int order_id,/* int user_id, */  User user, /*int product_id*/ Product product, Date order_date, int quantity)
 	{
 		super();
 		this.order_id = order_id;
 	//	this.user_id = user_id;
 		this.user = user;
 		
-		this.product_id = product_id;
+		//this.product_id = product_id;
+		this.product = product;
 		this.order_date = order_date;
 		this.quantity = quantity;
 	}
 	
 	
-	public Order( /*int user_id,*/User user,  int product_id, Date order_date, int quantity)
+	public Order( /*int user_id,*/User user, /* int product_id*/ Product product, Date order_date, int quantity)
 	{
 		super();		
 	//	this.user_id = user_id;
 		this.user = user;
 		
-		this.product_id = product_id;
+		//this.product_id = product_id;
+		this.product = product;
 		this.order_date = order_date;
 		this.quantity = quantity;
 	}
+	
+	public User getUser() {		return user;	}
+	public void setUser(User user) {		this.user = user;	}
+	
+	
+	public Product getProduct() {		return product;	}
+	public void setProduct(Product product) {		this.product = product;	}
+	
+	
 	
 	public int getOrder_id() {
 		return order_id;
@@ -98,6 +112,7 @@ public class Order
 		this.user_id = user_id;
 	}
 */
+	/*
 	public int getProduct_id() {
 		return product_id;
 	}
@@ -105,6 +120,7 @@ public class Order
 	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
 	}
+	*/
 
 	public Date getOrder_date() {
 		return order_date;
@@ -125,7 +141,7 @@ public class Order
 	@Override
 	public String toString() 
 	{
-		return "Order [order_id=" + order_id +/* ", user_id=" + user_id + */", product_id=" + product_id + ", order_date="+ order_date + ", quantity=" + quantity + "]";
+		return "Order [order_id=" + order_id +/* ", user_id=" + user_id + ", product_id=" + product_id + */", order_date="+ order_date + ", quantity=" + quantity + "]";
 	}
 	
 	

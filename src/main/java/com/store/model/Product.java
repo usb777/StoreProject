@@ -1,12 +1,15 @@
 package com.store.model;
 
 import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -39,6 +42,13 @@ public class Product {
 	
 	@Column
 	private int quantity;
+	
+	
+	
+	@OneToMany(mappedBy = "product")
+    private List<Order> orders = new ArrayList<>();
+
+	
 
 	//default constructor
 	public Product()
