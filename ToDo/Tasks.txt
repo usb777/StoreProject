@@ -5,3 +5,8 @@
  -------ONE to One SAve New User with Address (see in save)
  
  https://attacomsian.com/blog/spring-data-jpa-one-to-one-mapping
+ 
+ 
+ 
+ -----------------------Order=Cart DB design----------------------------------------------
+ https://mysql.tutorials24x7.com/blog/guide-to-design-database-for-shopping-cart-in-mysql
