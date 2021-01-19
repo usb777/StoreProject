@@ -3,3 +3,6 @@ https://github.com/MrLearnerNinja/shopping-ui
 
 
 https://github.com/MrLearnerNinja/shopping-restfulapi/tree/master/shopping/src/main/java/com/spring/model
+
+
+https://o7planning.org/10683/create-a-shopping-cart-web-application-with-spring-boot-hibernate
