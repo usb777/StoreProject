@@ -17,8 +17,9 @@ public interface CartItemJPARepository  extends JpaRepository<CartItem, Integer>
 {
 
 	  @Modifying
-	  @Query(value = "SELECT  cart.cart_id, cart.user_id FROM Cart cart WHERE cart.user_id = ?", 	  nativeQuery = true)
-		 public List<Cart> findCartsByUserId( int user_id);
+	  @Query(value = "SELECT ci.id, ci.cart_id, ci.product_id, ci.quantity, ci.date_added, c.user_id FROM cart_item ci " + 
+	  		"JOIN cart c ON c.cart_id = ci.cart_id WHERE c.user_id= ?", 	  nativeQuery = true)
+		 public List<CartItem> findCartItemByUserId( int user_id);
 	  
 	  
 	  

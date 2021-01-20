@@ -37,20 +37,27 @@ public class CartItemService implements ICartItemService
 	    {
 	        this.cartItemRepository = cartItemRepository;
 	    }
+	    
+	    
+	    public List<CartItem> findCartItemByUserId(int user_id)
+	    {
+	    	return cartItemRepository.findCartItemByUserId(user_id);
+	    }
+	    
 	
 	
 	
 	@Override
-	public List<CartItem> getCarts() 
+	public List<CartItem> getCartItems() 
 	{
-		return cartItemRepository.findCartsByUserId(user_id);
+		return cartItemRepository.findAll();
 	}
 
 	@Override
-	public CartItem getCartByID(int cartItemId) throws RecordNotFoundException 
+	public CartItem getCartItemByID(int cartItemId) throws RecordNotFoundException 
 	{
 		// TODO Auto-generated method stub
-		return null;
+		return cartItemRepository.getOne(cartItemId);
 	}
 
 	@Override

@@ -14,8 +14,10 @@ import com.store.model.CartItem;
 
 public interface ICartItemService 
 {
-	  public List<CartItem> getCarts();
-	  public CartItem getCartByID(int cartItemId)throws RecordNotFoundException;
+	  public List<CartItem> getCartItems();
+	  
+	  
+	  public CartItem getCartItemByID(int cartItemId)throws RecordNotFoundException;
 	  public CartItem saveNewCartItem(CartItem cartItem);
 	  public CartItem updateCartItem(CartItem cartItem)throws RecordNotFoundException;
 	  public void deleteCartItem(int id) throws RecordNotFoundException ;
