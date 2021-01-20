@@ -67,16 +67,18 @@
   					    <h5 class="card-title"><a href="#">Checkout</a></h5>
   					    
   					    
-  					 <div th:switch="${carts}">
+  			<div th:switch="${carts}">
    				<h5 th:case="null">No items yet!</h5>
         		<div th:case="*">
                 	<div th:each="cart : ${carts}">
-                    	<span th:text="${cart.product_id}"></span>                   
+                    	<span th:text="${cart.cart_id}"></span>                   
                 </div>      
 		 	</div> 
-		 	</div>  					    
+		 	</div>  		
+		 	<!-- 			    
     					<p class="card-text"> <span th:text="${cartItems}" ></span> items in cart</p>
     					<h5 class="card-title"> Total:  $ <span th:text="${totalPrice}" ></span></h5>
+    			 -->		
   					</div>
 					</div>
 				</div>	

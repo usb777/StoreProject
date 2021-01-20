@@ -95,11 +95,11 @@ public class UserWebController
 	   {	
 		   List < Cart > carts = cartService.findCartsByUserId(userId);
 		   model.addAttribute("carts", carts    );
-		   
+		/*   
 		   Object items = cartService.countCartItems(userId);
 		   model.addAttribute("cartItems",items );
-		   
-		   model.addAttribute("totalPrice",cartService.totalCartPrice(userId) );
+		  */ 
+		 //  model.addAttribute("totalPrice",cartService.totalCartPrice(userId) );
 		   
 		   model.addAttribute("userId", userId);
 		   model.addAttribute("products", productService.getProducts());
@@ -118,12 +118,12 @@ public class UserWebController
 		   
 		   List < Cart > carts = cartService.findCartsByUserId(userId);
 		   model.addAttribute("carts", carts    );
-		   
+		  /* 
 		   Object items = cartService.countCartItems(userId);
 		   model.addAttribute("cartItems",items );
 		   
 		   model.addAttribute("totalPrice",cartService.totalCartPrice(userId) );
-		   
+		   */
 		   
 		   model.addAttribute("userId", userId);		   
 		   model.addAttribute("products", productService.getProducts());

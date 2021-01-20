@@ -44,6 +44,7 @@ public class CartService implements ICartService
 	    	return cartRepository.findCartsByUserId(user_id);
 	    }
 	    
+	  /*  
 	    public Object countCartItems( int user_id)
 	    {    
 	    	return cartRepository.countCartItems(user_id);
@@ -54,12 +55,12 @@ public class CartService implements ICartService
 	    	return cartRepository.totalCartPrice(user_id);
 	    }
 	    
-	  /*  
-	    public List<Cart> findCartsByUserId(int user_id)
-	    {	
-	    	return cartRepository.findAll();
-	    }    
+	    
+	    
 	    */
+	    	    
+	    
+	 
 
 	@Override
 	public List<Cart> getCarts()
@@ -88,18 +89,8 @@ public class CartService implements ICartService
 		Cart oldCart = cartRepository.getOne(cart.getCart_id());
 		
 		 if (cart.getCart_id() >0) 
-	        {
-			 
-			 /*
-			  * int product_id;  //3
-				Date date_added;   //4	
-				String email;           //5
-				int quantity;           //6
-			  */
-			 oldCart.setUser_id(cart.getUser_id());   //2
-			 oldCart.setProduct_id(cart.getProduct_id());  //3
-			 oldCart.setDate_added(new Date()); //4			
-			 oldCart.setQuantity(cart.getQuantity());  //5
+	        {		
+			 oldCart.setUser_id(cart.getUser_id());   //2			
  	        }
 	        return cartRepository.save(oldCart);
 		

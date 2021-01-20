@@ -25,44 +25,26 @@ public class Cart
 	@Column
 	int user_id;    //2  JOIN Column
 	
-	@Column
-	int product_id;  //3  JOIN Column
-	 
-	@Column
-	Date date_added;   //4
 	
-
-	
-	@Column
-	int quantity;           //5
-
 	public Cart()  
 	{
 		super();
 	}	
 		
 	
-	public Cart(int cart_id, int user_id, int product_id, Date date_added,  int quantity) 
+	public Cart(int cart_id, int user_id) 
 	{
 		super();
 		this.cart_id = cart_id;
 		this.user_id = user_id;
-		this.product_id = product_id;
-		this.date_added = date_added;
 	
-		this.quantity = quantity;
 	}
 
 	public Cart( int user_id, int product_id, Date date_added,  int quantity) 
 	{
 		super();		
 		this.user_id = user_id;
-		this.product_id = product_id;
-		this.date_added = date_added;
-	
-		this.quantity = quantity;
 	}
-	
 	
 	public int getCart_id() {
 		return cart_id;
@@ -84,41 +66,9 @@ public class Cart
 	}
 
 
-	public int getProduct_id() {
-		return product_id;
-	}
-
-
-	public void setProduct_id(int product_id) {
-		this.product_id = product_id;
-	}
-
-
-	public Date getDate_added() {
-		return date_added;
-	}
-
-
-	public void setDate_added(Date date_added) {
-		this.date_added = date_added;
-	}
-
-
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-
 	@Override
 	public String toString() {
-		return "Cart [cart_id=" + cart_id + ", user_id=" + user_id + ", product_id=" + product_id + ", date_added="
-				+ date_added + ", quantity=" + quantity + "]";
+		return "Cart [cart_id=" + cart_id + ", user_id=" + user_id + "]";
 	}
 	
 	
