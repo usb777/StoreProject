@@ -83,8 +83,30 @@ public class CartItemService implements ICartItemService
 	@Override
 	public CartItem updateCartItem(CartItem cartItem) throws RecordNotFoundException 
 	{
-		// TODO Auto-generated method stub
-		return null;
+	   CartItem oldCartItem = cartItemRepository.getOne(cartItem.getId());
+	       
+        if (cartItem != null) 
+        {
+        	
+   /*        	 	
+		int id;    			//1	
+		int cart_id;    	//2  JOIN Column
+		int product_id;     //3  JOIN Column
+		int quantity;       //4
+		Date date_added;    //5
+	
+    */    	
+        	oldCartItem.setCart_id(oldCartItem.getCart_id());       //2
+        	oldCartItem.setProduct_id(oldCartItem.getProduct_id()); //3
+        	oldCartItem.setQuantity(oldCartItem.getQuantity());     //4
+        	oldCartItem.setDate_added(new Date());//5
+          
+          
+         
+        }
+      //  return oldC; 
+        
+        return cartItemRepository.save(oldCartItem);
 	}
 
 	@Override

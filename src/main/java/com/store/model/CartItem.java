@@ -29,10 +29,10 @@ public class CartItem
 	int product_id;    //3  JOIN Column
 	
 	@Column 
-	int quantity;
+	int quantity;      //4
 	
 	@Column
-	Date date_added;
+	Date date_added;    //5
 
 	public int getId()
 	{
