@@ -23,11 +23,12 @@ public interface CartItemJPARepository  extends JpaRepository<CartItem, Integer>
 	  
 	  
 	  
-	/*
-	  @Query(value = "SELECT  count(cart.cart_id) as items  FROM Cart cart WHERE cart.user_id = ?",  nativeQuery = true)
+	  @Query(value = "SELECT COUNT(ci.id) FROM cart_item ci JOIN cart c ON c.cart_id = ci.cart_id WHERE c.user_id= ?",  nativeQuery = true)
 		 public Object countCartItems( int user_id);
 	  
-	  @Query(value = " SELECT  SUM(cart.quantity*p.price) FROM Cart cart	  JOIN product p  ON cart.product_id= p.product_id	   WHERE cart.user_id = ?",  nativeQuery = true)
-	  public Object totalCartPrice( int user_id);
-	  */
+	  @Query(value = "SELECT SUM(ci.quantity* p.price) FROM cart_item ci " + 
+	  		"JOIN cart c ON c.cart_id = ci.cart_id " + 
+	  		"JOIN product p ON ci.product_id = p.product_id " + 
+	  		"WHERE c.user_id= ?",  nativeQuery = true)
+	  public Object totalCartPriceByUser( int user_id);
 }

@@ -19,8 +19,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.store.dao_repositories.CartJPARepository;
 import com.store.exception.RecordNotFoundException;
 import com.store.model.Cart;
+import com.store.model.CartItem;
 import com.store.model.Product;
 import com.store.model.User;
+import com.store.services.CartItemService;
 import com.store.services.CartService;
 import com.store.services.OrderService;
 import com.store.services.ProductService;
@@ -44,6 +46,10 @@ public class UserWebController
 	 
 	 @Autowired
 	    private CartService cartService;
+	 
+	 @Autowired
+	    private CartItemService cartItemService;
+	 
 	 
 	 @Autowired
 	    private OrderService orderService;
@@ -93,13 +99,13 @@ public class UserWebController
 	   @RequestMapping("/{userId}/store")
 	   public String showStoreProduct(Model model, @PathVariable("userId") int userId) 
 	   {	
-		   List < Cart > carts = cartService.findCartsByUserId(userId);
-		   model.addAttribute("carts", carts    );
-		/*   
-		   Object items = cartService.countCartItems(userId);
+		   List < CartItem > cartItems = cartItemService.findCartItemByUserId(userId);
+		   model.addAttribute("carts", cartItems    );
+		   
+		   Object items = cartItemService.countCartItems(userId);
 		   model.addAttribute("cartItems",items );
-		  */ 
-		 //  model.addAttribute("totalPrice",cartService.totalCartPrice(userId) );
+		   
+		   model.addAttribute("totalPrice",cartItemService.totalCartPrice(userId) );
 		   
 		   model.addAttribute("userId", userId);
 		   model.addAttribute("products", productService.getProducts());
@@ -110,20 +116,22 @@ public class UserWebController
 	   
 	   @RequestMapping("/addCart/{userId}/{productId}")
 	   public String addProductToCart(Model model, @PathVariable("userId") int userId, @PathVariable("productId") int productId ) 
-	   {	
-		   Cart cart = new Cart( userId, productId, new Date(), 1);
-		   cartService.saveNewCart(cart);
+	   {	                 
+		    
+		   CartItem cartItem = new CartItem(1010, productId, 1, new Date());
+		   cartItemService.saveNewCartItem(cartItem);
 		   
 		   
 		   
-		   List < Cart > carts = cartService.findCartsByUserId(userId);
-		   model.addAttribute("carts", carts    );
-		  /* 
-		   Object items = cartService.countCartItems(userId);
+		   List < CartItem > cartItems = cartItemService.findCartItemByUserId(userId);
+		   model.addAttribute("carts", cartItems    );
+		  
+		   Object items = cartItemService.countCartItems(userId);
 		   model.addAttribute("cartItems",items );
 		   
-		   model.addAttribute("totalPrice",cartService.totalCartPrice(userId) );
-		   */
+		   model.addAttribute("totalPrice",cartItemService.totalCartPrice(userId) );
+		   
+		   
 		   
 		   model.addAttribute("userId", userId);		   
 		   model.addAttribute("products", productService.getProducts());

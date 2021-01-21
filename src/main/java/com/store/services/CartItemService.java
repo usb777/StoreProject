@@ -38,11 +38,25 @@ public class CartItemService implements ICartItemService
 	        this.cartItemRepository = cartItemRepository;
 	    }
 	    
-	    
+	   
 	    public List<CartItem> findCartItemByUserId(int user_id)
 	    {
 	    	return cartItemRepository.findCartItemByUserId(user_id);
 	    }
+	    
+	    
+	    
+	    public Object countCartItems( int user_id)
+	    {    
+	    	return cartItemRepository.countCartItems(user_id);
+	    }
+	    
+	    
+	    public Object totalCartPrice( int user_id)
+	    {
+	    	return cartItemRepository.totalCartPriceByUser(user_id);
+	    }
+	    
 	    
 	
 	

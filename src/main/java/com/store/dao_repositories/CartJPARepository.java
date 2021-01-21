@@ -20,7 +20,7 @@ public interface CartJPARepository  extends JpaRepository<Cart, Integer>
 		 public List<Cart> findCartsByUserId( int user_id);
 	  
 	/*
-	  @Query(value = "SELECT  count(cart.cart_id) as items  FROM Cart cart WHERE cart.user_id = ?",  nativeQuery = true)
+	  @Query(value = "SELECT COUNT(ci.id) FROM cart_item ci JOIN cart c ON c.cart_id = ci.cart_id WHERE c.user_id= ?",  nativeQuery = true)
 		 public Object countCartItems( int user_id);
 	  
 	  @Query(value = " SELECT  SUM(cart.quantity*p.price) FROM Cart cart	  JOIN product p  ON cart.product_id= p.product_id	   WHERE cart.user_id = ?",  nativeQuery = true)

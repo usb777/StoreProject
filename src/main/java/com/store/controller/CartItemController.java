@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.store.exception.RecordNotFoundException;
-import com.store.model.Cart;
+
+import com.store.model.CartItem;
+import com.store.model.User;
 import com.store.services.CartItemService;
-import com.store.services.CartService;
+
 
 @RestController
 @RequestMapping("/cartitem")
@@ -34,10 +36,23 @@ public class CartItemController
 	 
 	 
 	  @GetMapping
-	    public ResponseEntity<List<Cart>> getAllCartItems() 
+	    public ResponseEntity<List<CartItem>> getAllCartItems() 
 	    {
 	        return new ResponseEntity(cartItemService.getCartItems(), HttpStatus.OK);
 	    }
+	  
+	  
+	  @GetMapping("/{userId}")
+		public ResponseEntity<List<CartItem>> getCartItemByUserId(@PathVariable int userId) throws RecordNotFoundException 
+		{
+			if(userId == 0 ) 
+			{
+				return new ResponseEntity("Id must not be 0", HttpStatus.BAD_REQUEST);
+			}
+			
+			//return new ResponseEntity(cartItemService.findCartItemByUserId(userId), HttpStatus.OK);
+			return new ResponseEntity(cartItemService.findCartItemByUserId(userId), HttpStatus.OK);
+		}
 	  
 	  
 	  
