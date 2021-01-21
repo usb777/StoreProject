@@ -100,7 +100,17 @@ public class UserWebController
 	   public String showStoreProduct(Model model, @PathVariable("userId") int userId) 
 	   {	
 		   List < CartItem > cartItems = cartItemService.findCartItemByUserId(userId);
-		   model.addAttribute("carts", cartItems    );
+		   model.addAttribute("carts", cartItems );
+		   
+		 try {
+			 System.out.println("====================================================================");
+			 System.out.println( cartItems.get(0).getCart_id() ); // out of bounds
+			 System.out.println("====================================================================");
+		   } catch(Exception e) 
+		 {
+			   System.out.println("Error is "+e.getMessage());
+		 }
+		   
 		   
 		   Object items = cartItemService.countCartItems(userId);
 		   model.addAttribute("cartItems",items );
@@ -117,14 +127,36 @@ public class UserWebController
 	   @RequestMapping("/addCart/{userId}/{productId}")
 	   public String addProductToCart(Model model, @PathVariable("userId") int userId, @PathVariable("productId") int productId ) 
 	   {	                 
-		    
-		   CartItem cartItem = new CartItem(1010, productId, 1, new Date());
-		   cartItemService.saveNewCartItem(cartItem);
-		   
-		   
-		   
+		  
 		   List < CartItem > cartItems = cartItemService.findCartItemByUserId(userId);
 		   model.addAttribute("carts", cartItems    );
+		  
+		   
+			 try {
+				 System.out.println("====================================================================");
+				 System.out.println( cartItems.get(0).getCart_id() ); // out of bounds
+				 System.out.println( "User id = "+ userId); // out of bounds); // out of bounds
+				 System.out.println( "product Id = "+ productId); // out of bounds); // out of bounds
+				 System.out.println("====================================================================");
+				
+				 CartItem cartItem = new CartItem(cartItems.get(0).getCart_id(), productId, 1, new Date());
+				 System.out.println(cartItem);
+				   cartItemService.saveNewCartItem(cartItem);
+				 
+			   } catch(Exception e) 
+			 {
+				   System.out.println("Error is "+e.getMessage());
+			 }
+			   
+		   
+		   
+		   /* 
+		   CartItem cartItem = new CartItem(1010, productId, 1, new Date());
+		   cartItemService.saveNewCartItem(cartItem);
+		   */
+		   //To Do: Get cartID(cart) from   
+		   
+		  
 		  
 		   Object items = cartItemService.countCartItems(userId);
 		   model.addAttribute("cartItems",items );
@@ -137,7 +169,8 @@ public class UserWebController
 		   model.addAttribute("products", productService.getProducts());
 		   
 		 
-		   return "user/store";			   
+		  // return "user/store";		
+		   return "redirect:/user/"+userId+"/store";
 		   
 	   }
 	   

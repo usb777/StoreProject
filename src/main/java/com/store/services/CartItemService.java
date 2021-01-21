@@ -77,8 +77,7 @@ public class CartItemService implements ICartItemService
 	@Override
 	public CartItem saveNewCartItem(CartItem cartItem)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return cartItemRepository.save(cartItem);
 	}
 
 	@Override
@@ -91,14 +90,16 @@ public class CartItemService implements ICartItemService
 	@Override
 	public void deleteCartItem(int id) throws RecordNotFoundException
 	{
-		// TODO Auto-generated method stub
+	     
+		CartItem oldCartItem = cartItemRepository.getOne(id); // getOne
+		cartItemRepository.deleteById(id);
 		
 	}
 
 	@Override
 	public void deleteCartItems() 
 	{
-		// TODO Auto-generated method stub
+		cartItemRepository.deleteAll();
 		
 	}
 
