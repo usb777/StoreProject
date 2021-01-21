@@ -111,11 +111,8 @@ public class CartItemService implements ICartItemService
 
 	@Override
 	public void deleteCartItem(int id) throws RecordNotFoundException
-	{
-	     
-		CartItem oldCartItem = cartItemRepository.getOne(id); // getOne
-		cartItemRepository.deleteById(id);
-		
+	{ 
+		cartItemRepository.deleteById(id);		
 	}
 
 	@Override
