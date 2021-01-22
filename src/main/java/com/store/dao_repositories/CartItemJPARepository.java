@@ -33,4 +33,7 @@ public interface CartItemJPARepository  extends JpaRepository<CartItem, Integer>
 	  public Object totalCartPriceByUser( int user_id);	  
 	  
 	  
+	  @Query(value = " SELECT  c.user_id FROM cart_item ci  	  JOIN cart c ON c.cart_id = ci.cart_id 	  WHERE ci.id = ?",  nativeQuery = true)
+	  public Object getUserIDbyCartItemID( int id);	
+	  
 }

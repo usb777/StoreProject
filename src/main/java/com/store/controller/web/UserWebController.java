@@ -126,6 +126,26 @@ public class UserWebController
 	   }
 	   
 	   
+	   
+	   
+	   
+	   @RequestMapping("/carts/delete/{id}")
+			public String deleteProduct(@PathVariable(name = "id") int id) throws RecordNotFoundException 
+	      {
+		   
+		   String userID = cartItemService.getUserIDbyCartItemID(id).toString();
+		   System.out.println("USERID = "+ userID);
+			   cartItemService.deleteCartItem(id);
+				
+				return "redirect:/user/"+userID+"/cart";
+			}
+	   
+	   
+	   
+	   
+	   
+	   
+	   
 	 
 	 
 	   
@@ -149,29 +169,16 @@ public class UserWebController
 	   
 	   
 	   @RequestMapping("/addCart/{userId}/{productId}")
-	   public String addProductToCart(Model model, @PathVariable("userId") int userId, @PathVariable("productId") int productId ) 
+	   public String addProductToCart(Model model, @PathVariable("userId") int userId, @PathVariable("productId") int productId ) throws RecordNotFoundException 
 	   {	                 
 		  
 		   List < CartItem > cartItems = cartItemService.findCartItemByUserId(userId);
 		   model.addAttribute("carts", cartItems    );
+		   Product product = productService.getProductByID(productId);
+		   CartItem cartItem = new CartItem(cartItems.get(0).getCart_id(), product, 1, new Date());
+			 System.out.println(cartItem);
+			   cartItemService.saveNewCartItem(cartItem);
 		  
-		   
-			 try {
-				 System.out.println("====================================================================");
-				 System.out.println( cartItems.get(0).getCart_id() ); // out of bounds
-				 System.out.println( "User id = "+ userId); // out of bounds); // out of bounds
-				 System.out.println( "product Id = "+ productId); // out of bounds); // out of bounds
-				 System.out.println("====================================================================");
-				
-				 /*// Add new CartItem
-				 CartItem cartItem = new CartItem(cartItems.get(0).getCart_id(), productId, 1, new Date());
-				 System.out.println(cartItem);
-				   cartItemService.saveNewCartItem(cartItem);
-				 */
-			   } catch(Exception e) 
-			 {
-				   System.out.println("Error is "+e.getMessage());
-			 }
 			   
 		   
 		   

@@ -57,7 +57,10 @@ public class CartItemService implements ICartItemService
 	    	return cartItemRepository.totalCartPriceByUser(user_id);
 	    }
 	    
-	    
+	    public Object getUserIDbyCartItemID( int id)
+	    {
+	    	return cartItemRepository.getUserIDbyCartItemID(id);
+	    }
 	
 	
 	
