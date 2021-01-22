@@ -71,9 +71,6 @@ public class User
     private Address address;
 	
 	
-	 @OneToMany(mappedBy = "user")
-	    private List<Order> orders = new ArrayList<>();
-	
 	
 	public User() 
 	{

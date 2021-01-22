@@ -24,14 +24,8 @@ public class Order
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	@Column(name = "order_id")
 	int order_id;  //1
-	
-	
 
-	/*
-	@Column
-	int user_id; //2
-	*/
-	/*
+   /*
 	@ManyToOne
     @JoinColumn(name="user_id")
 	private User user;
@@ -59,24 +53,23 @@ public class Order
 	}
 	
 	
-	
-	
-	
-	
-	
-	public int getOrder_id() {
+	public int getOrder_id()
+	{
 		return order_id;
 	}
 
-	public void setOrder_id(int order_id) {
+	public void setOrder_id(int order_id) 
+	{
 		this.order_id = order_id;
 	}
 
-	public int getUser_id() {
+	public int getUser_id() 
+	{
 		return user_id;
 	}
 
-	public void setUser_id(int user_id) {
+	public void setUser_id(int user_id) 
+	{
 		this.user_id = user_id;
 	}
 

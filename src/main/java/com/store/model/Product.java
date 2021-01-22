@@ -45,14 +45,14 @@ public class Product {
 	
 	
 	
-	@OneToMany(mappedBy = "product")
-    private List<Order> orders = new ArrayList<>();
-
+	
 	
 	@OneToMany(mappedBy = "product")
     private List<CartItem> cartItems = new ArrayList<>();
 	
-	
+
+	@OneToMany(mappedBy = "product")
+    private List<OrderItem> orderItems = new ArrayList<>();
 
 	//default constructor
 	public Product()
