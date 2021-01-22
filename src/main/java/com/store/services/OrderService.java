@@ -24,26 +24,20 @@ public class OrderService implements IOrderService
 	 
 	    @Autowired // autowired by Constructor
 	    public OrderService( OrderJPARepository orderRepository) 
-	    {
-	        this.orderRepository = orderRepository;
-	    }
+	    {       this.orderRepository = orderRepository;	    }
 	    
 	
 
 	   // Get Orders 
 	@Override
 	public List<Order> getOrders() 
-	{
-		return orderRepository.findAll();
-	}
+	{	return orderRepository.findAll();	}
 
 	
 	
 	@Override
 	public Order getOrderByID(int orderId) throws RecordNotFoundException 
-	{
-			return orderRepository.getOne(orderId);
-	}
+	{	return orderRepository.getOne(orderId);	}
 	
 
 	@Override
@@ -59,26 +53,13 @@ public class OrderService implements IOrderService
 		Order oldOrder = orderRepository.getOne(order.getOrder_id());
 		
 		 if (order.getOrder_id() >0) 
-	        {
-			 
-			 /*
-			int order_id;      //1
-	
-			int user_id;      //2
-	 
-			int product_id;  //3
-			
-			Date order_date;  //4
-	
-			int quantity;   //5
-			
-			  */
-			 //oldOrder.setUser_id(order.getUser_id());   		//2
-			 oldOrder.setUser(order.getUser())	 ;
-			 //oldOrder.setProduct_id(order.getProduct_id()); 	//3
-			 oldOrder.setProduct(order.getProduct());
-			 oldOrder.setOrder_date(new Date());                //4
-			oldOrder.setQuantity(order.getQuantity());          //5
+	        {			 
+	 /*
+			int order_id;      //1	
+			int user_id;      //2			
+	 */
+			 oldOrder.setUser_id(order.getUser_id());   		//2
+		
 	        }
 	        return orderRepository.save(oldOrder);
 	}
