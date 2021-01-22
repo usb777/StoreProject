@@ -64,7 +64,7 @@
   					<div class="card-header">Cart</div>
   					
   					<div class="card-body">
-  					    <h5 class="card-title"><a href="#">Go to Cart</a></h5>
+  					    <h5 class="card-title"><a th:href="@{'/user/' + ${userId}+'/cart'}">Go to Cart</a></h5>
   					    
   					    
   			<div th:switch="${carts}">

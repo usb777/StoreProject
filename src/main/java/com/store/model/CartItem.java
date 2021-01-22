@@ -4,9 +4,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -24,10 +27,25 @@ public class CartItem
 	
 	@Column
 	int cart_id;    //2  JOIN Column
-	
+	/*
 	@Column
 	int product_id;    //3  JOIN Column
+	*/
 	
+	@ManyToOne
+    @JoinColumn(name="product_id")
+	private Product product;
+	
+	
+	
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 	@Column 
 	int quantity;      //4
 	
@@ -53,7 +71,7 @@ public class CartItem
 	{
 		this.cart_id = cart_id;
 	}
-
+/*
 	public int getProduct_id() {
 		return product_id;
 	}
@@ -62,7 +80,7 @@ public class CartItem
 	{
 		this.product_id = product_id;
 	}
-
+*/
 	public int getQuantity() 
 	{
 		return quantity;
@@ -90,21 +108,22 @@ public class CartItem
 	
 	
 
-	public CartItem(int id, int cart_id, int product_id, int quantity, Date date_added) {
+	public CartItem(int id, int cart_id, /*int product_id */   Product product, int quantity, Date date_added) {
 		super();
 		this.id = id;
 		this.cart_id = cart_id;
-		this.product_id = product_id;
+		//this.product_id = product_id;
 		this.quantity = quantity;
 		this.date_added = date_added;
 	}
 	
-	public CartItem( int cart_id, int product_id, int quantity, Date date_added) 
+	public CartItem( int cart_id, /* int product_id  */ Product product, int quantity, Date date_added) 
 	{
 		super();
 		
 		this.cart_id = cart_id;
-		this.product_id = product_id;
+		//this.product_id = product_id;
+		this.product = product;
 		this.quantity = quantity;
 		this.date_added = date_added;
 	}
@@ -112,7 +131,7 @@ public class CartItem
 	@Override
 	public String toString()
 	{
-		return "CartItem [id=" + id + ", cart_id=" + cart_id + ", product_id=" + product_id + ", quantity=" + quantity	+ ", date_added=" + date_added + "]";
+		return "CartItem [id=" + id + ", cart_id=" + cart_id + ", product=" + product + ", quantity=" + quantity	+ ", date_added=" + date_added + "]";
 	}
 	
 	

@@ -1,6 +1,8 @@
 package com.store.controller.web;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,6 +71,13 @@ public class UserWebController
 		@RequestMapping(path = { "/info/{userId}"})
 		public String editEmployeeById(Model model, @PathVariable("userId") int userId) 	throws RecordNotFoundException 
 		{ 
+			
+			 List < CartItem > cartItems = cartItemService.findCartItemByUserId(userId);
+			   model.addAttribute("carts", cartItems );   			   
+			   Object items = cartItemService.countCartItems(userId);
+			   model.addAttribute("cartItems",items );			   
+			   model.addAttribute("totalPrice",cartItemService.totalCartPrice(userId) );
+			
 		
 			if (userId>0) 
 			{
@@ -80,19 +89,44 @@ public class UserWebController
 	 
 	 	
 	   
-	   @RequestMapping("/carts")
-	   public String showCartList(Model model) 
+	   @RequestMapping("/{userId}/cart")
+	   public String showCartList(Model model, @PathVariable("userId") int userId) throws RecordNotFoundException 
 	   {		   
-		   model.addAttribute("carts", cartService.getCarts()   );
-		   return "user/carts";		   
+		   List < CartItem > cartItems = cartItemService.findCartItemByUserId(userId);
+		   
+		   /*
+		   
+		   List<Product> products  = new ArrayList<Product>(); // little stupid		   
+		   Iterator<CartItem> iteratorCartItem = cartItems.iterator();		   
+		   while(iteratorCartItem.hasNext()) 
+		     {
+			   //System.out.println(iteratorCartItem.next().getProduct_id());
+			   products.add( productService.getProductByID(iteratorCartItem.next().getProduct_id()) );
+			 }
+		  
+		    //model.addAttribute("products", products );
+		   */
+		   
+		   
+		  
+		   model.addAttribute("carts", cartItems );  
+		   
+		   Object items = cartItemService.countCartItems(userId);
+		   model.addAttribute("cartItems",items );
+		   
+		   model.addAttribute("totalPrice",cartItemService.totalCartPrice(userId) );
+		   
+		   model.addAttribute("userId", userId);
+		   model.addAttribute("products", productService.getProducts());
+		   
+		   
+		   
+		   
+		   return "user/cart";		   
 	   }
+	   
+	   
 	 
-	   @RequestMapping("/orders")
-	   public String showOrderList(Model model) 
-	   {		   
-		   model.addAttribute("orders", orderService.getOrders()  );
-		   return "user/orders";		   
-	   }
 	 
 	   
 
@@ -100,17 +134,7 @@ public class UserWebController
 	   public String showStoreProduct(Model model, @PathVariable("userId") int userId) 
 	   {	
 		   List < CartItem > cartItems = cartItemService.findCartItemByUserId(userId);
-		   model.addAttribute("carts", cartItems );
-		   
-		 try {
-			 System.out.println("====================================================================");
-			 System.out.println( cartItems.get(0).getCart_id() ); // out of bounds
-			 System.out.println("====================================================================");
-		   } catch(Exception e) 
-		 {
-			   System.out.println("Error is "+e.getMessage());
-		 }
-		   
+		   model.addAttribute("carts", cartItems );   
 		   
 		   Object items = cartItemService.countCartItems(userId);
 		   model.addAttribute("cartItems",items );
@@ -139,10 +163,11 @@ public class UserWebController
 				 System.out.println( "product Id = "+ productId); // out of bounds); // out of bounds
 				 System.out.println("====================================================================");
 				
+				 /*// Add new CartItem
 				 CartItem cartItem = new CartItem(cartItems.get(0).getCart_id(), productId, 1, new Date());
 				 System.out.println(cartItem);
 				   cartItemService.saveNewCartItem(cartItem);
-				 
+				 */
 			   } catch(Exception e) 
 			 {
 				   System.out.println("Error is "+e.getMessage());

@@ -97,7 +97,7 @@ public class CartItemService implements ICartItemService
 	
     */    	
         	oldCartItem.setCart_id(oldCartItem.getCart_id());       //2
-        	oldCartItem.setProduct_id(oldCartItem.getProduct_id()); //3
+        	oldCartItem.setProduct(oldCartItem.getProduct()); //3
         	oldCartItem.setQuantity(oldCartItem.getQuantity());     //4
         	oldCartItem.setDate_added(new Date());//5
           
