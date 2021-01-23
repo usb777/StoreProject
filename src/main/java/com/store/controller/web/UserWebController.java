@@ -22,10 +22,12 @@ import com.store.dao_repositories.CartJPARepository;
 import com.store.exception.RecordNotFoundException;
 import com.store.model.Cart;
 import com.store.model.CartItem;
+import com.store.model.OrderItem;
 import com.store.model.Product;
 import com.store.model.User;
 import com.store.services.CartItemService;
 import com.store.services.CartService;
+import com.store.services.OrderItemService;
 import com.store.services.OrderService;
 import com.store.services.ProductService;
 import com.store.services.UserService;
@@ -55,6 +57,10 @@ public class UserWebController
 	 
 	 @Autowired
 	    private OrderService orderService;
+	 
+	 @Autowired
+	    private OrderItemService orderItemService;
+	 
 	 
 	 private CartJPARepository cartRepository;
 	
@@ -141,14 +147,7 @@ public class UserWebController
 			}
 	   
 	   
-	   
-	   
-	   
-	   
-	   
-	 
-	 
-	   
+	     
 
 	   @RequestMapping("/{userId}/store")
 	   public String showStoreProduct(Model model, @PathVariable("userId") int userId) 
@@ -205,6 +204,35 @@ public class UserWebController
 		   return "redirect:/user/"+userId+"/store";
 		   
 	   }
+	   
+	   
+	   
+	   
+	   
+	   
+	   @RequestMapping("/{userId}/orders")
+	   public String showOrderItemList(Model model, @PathVariable("userId") int userId) throws RecordNotFoundException 
+	   {		   
+		   List < OrderItem > orderItems = orderItemService.findOrderItemsByUserId(userId);
+		   model.addAttribute("totalPriceByOrder",orderItemService.totalOrderPrice(userId) );		  
+		   model.addAttribute("orderitems", orderItems );  
+		   
+		   
+		   Object items = cartItemService.countCartItems(userId);
+		   model.addAttribute("cartItems",items );
+		   
+		   model.addAttribute("totalPrice",cartItemService.totalCartPrice(userId) );
+		   
+		   model.addAttribute("userId", userId);
+		   model.addAttribute("products", productService.getProducts());
+		   
+		   
+		   
+		   
+		   return "user/order";		   
+	   }
+	   
+	   
 	   
 	 
 	   

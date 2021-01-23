@@ -32,6 +32,19 @@ public class OrderItemService implements IOrderItemService
 	        this.orderItemRepository = orderItemRepository;
 	    }
 	    
+
+	    
+		   
+	    public List<OrderItem> findOrderItemsByUserId(int user_id)
+	    {
+	    	return orderItemRepository.findOrderItemsByUserId(user_id);
+	    }
+	    
+	    
+	    public Object totalOrderPrice( int user_id)
+	    {
+	    	return orderItemRepository.totalOrderPriceByUser(user_id);
+	    }
 	    
 
 	@Override
