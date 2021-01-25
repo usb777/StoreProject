@@ -1,8 +1,20 @@
 https://github.com/MrLearnerNinja/shopping-ui
 
-
-
 https://github.com/MrLearnerNinja/shopping-restfulapi/tree/master/shopping/src/main/java/com/spring/model
 
-
 https://o7planning.org/10683/create-a-shopping-cart-web-application-with-spring-boot-hibernate
+
+
+
+===============Spring Security======================
+
+https://www.jackrutorial.com/2018/04/spring-boot-user-registration-login.html
+
+with TOKEN:   https://medium.com/@kamer.dev/spring-boot-user-registration-and-login-43a33ea19745
+
+
+
+many security samples:   https://hellokoding.com/tag/security/
+
+
+
