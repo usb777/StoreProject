@@ -120,14 +120,7 @@ public class AdminWebController
 		}
 	   
 	   
-	 
-	   @RequestMapping("/orders")
-	   public String showOrderList(Model model) 
-	   {		   
-		   model.addAttribute("orders", orderService.getOrders()  );
-		   return "admin/orders";		   
-	   }
-	   
+
 	   
 	   
 	   
@@ -218,7 +211,20 @@ public class AdminWebController
 	 		}
 	 	   
 	   
-	 
-	 
+		 
+	   @RequestMapping("/orders")
+	   public String showOrderList(Model model) 
+	   {		   
+		   model.addAttribute("orders", orderService.getOrders()  );
+		   return "admin/orders";		   
+	   }   
+	   
+	   
+	   @RequestMapping("/logout")
+		public String adminLogout() 
+       {	
+			return "redirect:/";
+		}
+
 	 
 }

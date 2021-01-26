@@ -233,7 +233,11 @@ public class UserWebController
 	   }
 	   
 	   
-	   
+	   @RequestMapping("/logout")
+			public String userLogout()
+	        {	
+				return "redirect:/";
+			}
 	 
 	   
 	   
