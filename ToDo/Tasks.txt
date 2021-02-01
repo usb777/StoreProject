@@ -29,6 +29,7 @@ SUPER SAMPLE(Store + WebSecurity)
 
 https://o7planning.org/10683/create-a-shopping-cart-web-application-with-spring-boot-hibernate
 
-
----------------------------------------------------------------------------------------------
+--------------------------------AWS-UBUNTU-------------------------------------------------------------
+putty
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html
 
