@@ -5,7 +5,6 @@ import java.util.List;
 import com.store.exception.RecordNotFoundException;
 import com.store.model.Address;
 import com.store.model.Product;
-import com.store.model.Usertype;
 
 
 public interface IProductService 

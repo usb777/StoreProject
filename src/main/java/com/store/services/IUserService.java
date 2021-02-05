@@ -18,6 +18,7 @@ public interface IUserService
 	  public User updateUser(User u);
 	  public void deleteUser(int id);
 	  
+	  public User findUserByEmail(String email);
 	  
 	  @Query("SELECT u FROM User u WHERE u.status = 1")
 	 public Collection<User> findAllActiveUsers();

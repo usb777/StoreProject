@@ -3,6 +3,7 @@ package com.store.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -58,8 +61,6 @@ public class User
 	String username;
 	
 	
-	@Column(name = "usertype_id")
-	int usertype_id;
 	
 	/*
 	@Column(name = "address_id")
@@ -71,6 +72,13 @@ public class User
     private Address address;
 	
 	
+
+
+	 @ManyToMany(cascade=CascadeType.ALL)
+	 @JoinTable(name="user_role", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns=@JoinColumn(name="role_id"))
+	 private Set<Role> roles;
+	
+	
 	
 	public User() 
 	{
@@ -78,7 +86,7 @@ public class User
 	}
 	//constructor
 	public User(int user_id, Date dateof_birth, String job, String name, int age, String email, boolean is_enabled,
-				String password, String username, int usertype_id,/*int address_id*/ Address address) 
+				String password, String username, Address address) 
 	{
 		super();
 		this.user_id = user_id;
@@ -90,13 +98,12 @@ public class User
 		this.is_enabled = is_enabled;
 		this.password = password;
 		this.username = username;
-		this.usertype_id = usertype_id;
 		//this.address_id =  address_id;
 		this.address = address;
 	}
 	
 	public User( Date dateof_birth, String job, String name, int age, String email, boolean is_enabled,
-			String password, String username, int usertype_id,/*int address_id*/ Address address) 
+			String password, String username,  Address address) 
 {
 	super();	
 	this.dateof_birth = dateof_birth;
@@ -107,14 +114,13 @@ public class User
 	this.is_enabled = is_enabled;
 	this.password = password;
 	this.username = username;
-	this.usertype_id = usertype_id;
 	//this.address_id =  address_id;
 	this.address = address;
 }
 	
 	
 	public User( Date dateof_birth, String job, String name, int age, String email, boolean is_enabled,
-			String password, String username, int usertype_id) 
+			String password, String username) 
 {
 	super();	
 	this.dateof_birth = dateof_birth;
@@ -125,10 +131,20 @@ public class User
 	this.is_enabled = is_enabled;
 	this.password = password;
 	this.username = username;
-	this.usertype_id = usertype_id;
 	
 
 }
+	
+
+
+	 public Set<Role> getRoles() {
+	  return roles;
+	 }
+
+	 public void setRoles(Set<Role> roles) {
+	  this.roles = roles;
+	 }
+	
 	
 	public int getUser_id() {
 		return user_id;
@@ -184,12 +200,7 @@ public class User
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public int getUsertype_id() {
-		return usertype_id;
-	}
-	public void setUsertype_id(int usertype_id) {
-		this.usertype_id = usertype_id;
-	}
+
 	/*
 	public int getAddress_id() {
 		return address_id;
@@ -213,7 +224,7 @@ public class User
 	public String toString() {
 		return "User [user_id=" + user_id + ", dateof_birth=" + dateof_birth + ", job=" + job + ", name=" + name
 				+ ", age=" + age + ", email=" + email + ", is_enabled=" + is_enabled + ", password=" + password
-				+ ", username=" + username + ", usertype_id=" + usertype_id   + ", address=" + address.id   +"]";
+				+ ", username=" + username   + ", address=" + address.id   +"]";
 	}
 	
 

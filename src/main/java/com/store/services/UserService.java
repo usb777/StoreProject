@@ -1,8 +1,10 @@
 package com.store.services;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,14 +13,17 @@ import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.store.dao_repositories.RoleJPARespository;
 import com.store.dao_repositories.UserJPARepository;
 import com.store.model.Address;
+import com.store.model.Role;
 import com.store.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +41,27 @@ public class UserService implements IUserService
     {
         this.userRepository = userRepository;
     }
+    
+    
+
+    
+    @Autowired
+    private RoleJPARespository roleRespository;
+    
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    
+    @Override // override method from interface Service
+    public User findUserByEmail(String email) 
+    {
+     return userRepository.findByEmail(email);
+    }
+    
+    
+    
+    
+    
 
     @Override
     public List<User> getUsers() 
@@ -51,11 +77,20 @@ public class UserService implements IUserService
 	}
     
 	
+
 	 @Override
-	 public User saveNewUser(User u) 
+	 public User saveNewUser(User user) 
 	 {
-	        return userRepository.save(u);
+	  user.setUsername(user.getEmail());
+	  user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+	  user.setIs_enabled(true);
+	  Role userRole = roleRespository.findByRole("USER");
+	  user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+	  //userRepository.save(user);
+	  
+	  return userRepository.save(user);
 	 }
+	
 
     /**
      * Sort method:Dzimtry
@@ -103,7 +138,7 @@ public class UserService implements IUserService
 	            oldUser.setIs_enabled(u.isIs_enabled());//7
 	            oldUser.setPassword(u.getPassword());  //8
 	            oldUser.setUsername(u.getUsername()); //9
-	            oldUser.setUsertype_id(u.getUsertype_id()); //10
+	       //     oldUser.setUsertype_id(u.getUsertype_id()); //10
 	            oldUser.setAddress(u.getAddress());  //11
 	           
 	         
