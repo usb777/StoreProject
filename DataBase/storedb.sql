@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2021 at 06:01 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- Generation Time: Feb 06, 2021 at 02:39 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -76,19 +76,6 @@ CREATE TABLE `cart` (
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`cart_id`, `user_id`) VALUES
-(1, 1),
-(2, 5),
-(3, 6),
-(4, 8),
-(5, 9),
-(6, 10),
-(7, 11);
-
 -- --------------------------------------------------------
 
 --
@@ -102,17 +89,6 @@ CREATE TABLE `cart_item` (
   `date_added` date DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `cart_item`
---
-
-INSERT INTO `cart_item` (`id`, `cart_id`, `product_id`, `date_added`, `quantity`) VALUES
-(1, 1, 1, '2021-01-18', 1),
-(2, 2, 4, '2021-01-18', 2),
-(3, 2, 13, '2021-01-19', 1),
-(13, 1, 2, '2021-01-21', 1),
-(14, 1, 3, '2021-01-21', 1);
 
 -- --------------------------------------------------------
 
@@ -142,19 +118,6 @@ CREATE TABLE `orders` (
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`order_id`, `user_id`) VALUES
-(1, 1),
-(2, 5),
-(3, 6),
-(4, 8),
-(5, 9),
-(6, 10),
-(7, 11);
-
 -- --------------------------------------------------------
 
 --
@@ -169,13 +132,6 @@ CREATE TABLE `order_item` (
   `quantity` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `order_item`
---
-
-INSERT INTO `order_item` (`id`, `order_id`, `product_id`, `date_added`, `quantity`) VALUES
-(1, 1, 1, '2021-01-21', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -187,6 +143,19 @@ CREATE TABLE `people` (
   `age` int(11) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `persistent_logins`
+--
+
+CREATE TABLE `persistent_logins` (
+  `username` varchar(64) NOT NULL,
+  `series` varchar(64) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `last_used` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -227,11 +196,11 @@ CREATE TABLE `pma__central_columns` (
   `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
   `col_name` varchar(64) COLLATE utf8_bin NOT NULL,
   `col_type` varchar(64) COLLATE utf8_bin NOT NULL,
-  `col_length` text COLLATE utf8_bin DEFAULT NULL,
+  `col_length` text COLLATE utf8_bin,
   `col_collation` varchar(64) COLLATE utf8_bin NOT NULL,
   `col_isNull` tinyint(1) NOT NULL,
   `col_extra` varchar(255) COLLATE utf8_bin DEFAULT '',
-  `col_default` text COLLATE utf8_bin DEFAULT NULL
+  `col_default` text COLLATE utf8_bin
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Central list of columns';
 
 -- --------------------------------------------------------
@@ -300,7 +269,7 @@ CREATE TABLE `pma__history` (
   `username` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
   `db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
   `table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `timevalue` timestamp NOT NULL DEFAULT current_timestamp(),
+  `timevalue` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `sqlquery` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='SQL history for phpMyAdmin';
 
@@ -379,9 +348,9 @@ CREATE TABLE `pma__savedsearches` (
 CREATE TABLE `pma__table_coords` (
   `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
   `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `pdf_page_number` int(11) NOT NULL DEFAULT 0,
-  `x` float UNSIGNED NOT NULL DEFAULT 0,
-  `y` float UNSIGNED NOT NULL DEFAULT 0
+  `pdf_page_number` int(11) NOT NULL DEFAULT '0',
+  `x` float UNSIGNED NOT NULL DEFAULT '0',
+  `y` float UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table coordinates for phpMyAdmin PDF output';
 
 -- --------------------------------------------------------
@@ -407,7 +376,7 @@ CREATE TABLE `pma__table_uiprefs` (
   `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
   `table_name` varchar(64) COLLATE utf8_bin NOT NULL,
   `prefs` text COLLATE utf8_bin NOT NULL,
-  `last_update` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tables'' UI preferences';
 
 -- --------------------------------------------------------
@@ -423,10 +392,10 @@ CREATE TABLE `pma__tracking` (
   `date_created` datetime NOT NULL,
   `date_updated` datetime NOT NULL,
   `schema_snapshot` text COLLATE utf8_bin NOT NULL,
-  `schema_sql` text COLLATE utf8_bin DEFAULT NULL,
-  `data_sql` longtext COLLATE utf8_bin DEFAULT NULL,
+  `schema_sql` text COLLATE utf8_bin,
+  `data_sql` longtext COLLATE utf8_bin,
   `tracking` set('UPDATE','REPLACE','INSERT','DELETE','TRUNCATE','CREATE DATABASE','ALTER DATABASE','DROP DATABASE','CREATE TABLE','ALTER TABLE','RENAME TABLE','DROP TABLE','CREATE INDEX','DROP INDEX','CREATE VIEW','ALTER VIEW','DROP VIEW') COLLATE utf8_bin DEFAULT NULL,
-  `tracking_active` int(1) UNSIGNED NOT NULL DEFAULT 1
+  `tracking_active` int(1) UNSIGNED NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Database changes tracking for phpMyAdmin';
 
 -- --------------------------------------------------------
@@ -437,7 +406,7 @@ CREATE TABLE `pma__tracking` (
 
 CREATE TABLE `pma__userconfig` (
   `username` varchar(64) COLLATE utf8_bin NOT NULL,
-  `timevalue` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `timevalue` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `config_data` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User preferences storage for phpMyAdmin';
 
@@ -473,7 +442,7 @@ CREATE TABLE `pma__users` (
 CREATE TABLE `product` (
   `product_id` int(11) NOT NULL,
   `productname` varchar(255) DEFAULT NULL,
-  `productimage` longblob DEFAULT NULL,
+  `productimage` longblob,
   `description` varchar(255) DEFAULT NULL,
   `price` double DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
@@ -496,6 +465,25 @@ INSERT INTO `product` (`product_id`, `productname`, `productimage`, `description
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `role`
+--
+
+CREATE TABLE `role` (
+  `role_id` int(11) NOT NULL,
+  `role` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`role_id`, `role`) VALUES
+(1, 'ADMIN'),
+(2, 'USER');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -509,7 +497,6 @@ CREATE TABLE `user` (
   `is_enabled` bit(1) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
-  `usertype_id` int(11) NOT NULL DEFAULT 3,
   `address_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -517,34 +504,26 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `dateof_birth`, `job`, `name`, `age`, `email`, `is_enabled`, `password`, `username`, `usertype_id`, `address_id`) VALUES
-(1, '2000-01-04 00:00:00', 'best job', 'Dzmitry S', 37, 'dz@gmail.com', b'1', '1234', 'dzen', 1, 1),
-(5, '2002-01-04 00:00:00', 'doctor', 'Alex Mishurin', 23, 'alex@mail.com', b'0', '567', 'alex', 3, 2),
-(6, '2001-01-12 00:00:00', 'tester', 'don', 32, 'addres@gmail.com', b'0', '123', 'dze1567', 3, 4),
-(8, '2021-01-12 00:00:00', 'merchik', 'Antony K', 20, 'ant@gmail.com', b'1', '4567', 'ant', 3, 5),
-(9, '1983-01-12 00:00:00', 'developer', 'Dzmitr', 36, 'dz@gmail.com', b'0', '12345', 'Samoila', 3, 11),
-(10, '1983-01-12 00:00:00', 'teacher', 'Panasik Olga', 37, 'pans@gmail.com', b'0', '12345', 'panas', 3, 12),
-(11, '2021-01-13 00:00:00', 'president', 'Vasil', 21, 'dz@gmail.com', b'0', '123', 'vasil', 3, 14);
+INSERT INTO `user` (`user_id`, `dateof_birth`, `job`, `name`, `age`, `email`, `is_enabled`, `password`, `username`, `address_id`) VALUES
+(15, NULL, NULL, 'admin', 0, 'admin@gmail.com', b'1', '$2a$10$gTidMi5VY8MWOgV91u7cp.mQWSz8fp7CeLRYuJrsJMtfizvXeGh/.', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usertype`
+-- Table structure for table `user_role`
 --
 
-CREATE TABLE `usertype` (
-  `usertype_id` int(11) NOT NULL,
-  `usertype_name` varchar(100) DEFAULT NULL
+CREATE TABLE `user_role` (
+  `user_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `usertype`
+-- Dumping data for table `user_role`
 --
 
-INSERT INTO `usertype` (`usertype_id`, `usertype_name`) VALUES
-(1, 'superadmin'),
-(2, 'admin'),
-(3, 'customer');
+INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
+(15, 2);
 
 --
 -- Indexes for dumped tables
@@ -585,6 +564,12 @@ ALTER TABLE `order_item`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_order_key2` (`order_id`),
   ADD KEY `fk_product_key2` (`product_id`);
+
+--
+-- Indexes for table `persistent_logins`
+--
+ALTER TABLE `persistent_logins`
+  ADD PRIMARY KEY (`series`);
 
 --
 -- Indexes for table `pma__bookmark`
@@ -713,18 +698,24 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`product_id`);
 
 --
+-- Indexes for table `role`
+--
+ALTER TABLE `role`
+  ADD PRIMARY KEY (`role_id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`),
-  ADD KEY `FK_usertype` (`usertype_id`),
   ADD KEY `fk_address` (`address_id`);
 
 --
--- Indexes for table `usertype`
+-- Indexes for table `user_role`
 --
-ALTER TABLE `usertype`
-  ADD PRIMARY KEY (`usertype_id`);
+ALTER TABLE `user_role`
+  ADD PRIMARY KEY (`user_id`,`role_id`),
+  ADD KEY `user_role_key` (`role_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -740,25 +731,25 @@ ALTER TABLE `address`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `cart_item`
 --
 ALTER TABLE `cart_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `order_item`
 --
 ALTER TABLE `order_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pma__bookmark`
@@ -806,13 +797,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `usertype`
---
-ALTER TABLE `usertype`
-  MODIFY `usertype_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
@@ -848,8 +833,14 @@ ALTER TABLE `order_item`
 -- Constraints for table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `FK_usertype` FOREIGN KEY (`usertype_id`) REFERENCES `usertype` (`usertype_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_address` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `user_role`
+--
+ALTER TABLE `user_role`
+  ADD CONSTRAINT `role_userrole` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`),
+  ADD CONSTRAINT `user_userrole` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
