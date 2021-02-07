@@ -84,6 +84,7 @@ public class UserService implements IUserService
 	  user.setUsername(user.getEmail());
 	  user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 	  user.setIs_enabled(true);
+	  user.setDateof_birth( new Date() );
 	  Role userRole = roleRespository.findByRole("USER");
 	  user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
 	  //userRepository.save(user);

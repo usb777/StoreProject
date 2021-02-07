@@ -172,12 +172,20 @@ public class UserWebController
 	   {	                 
 		  
 		   List < CartItem > cartItems = cartItemService.findCartItemByUserId(userId);
-		   model.addAttribute("carts", cartItems    );
 		   Product product = productService.getProductByID(productId);
-		   CartItem cartItem = new CartItem(cartItems.get(0).getCart_id(), product, 1, new Date());
-			 System.out.println(cartItem);
+		   
+		   try 
+		   {   
+			   model.addAttribute("carts", cartItems    );
+			   CartItem cartItem = new CartItem(cartItems.get(0).getCart_id(), product, 1, new Date());
 			   cartItemService.saveNewCartItem(cartItem);
-		  
+		   }
+		   catch (Exception e) 
+		   {
+			   System.out.println("============================");
+			   System.out.println("Error = "+e.getMessage());
+			   System.out.println("============================");
+		   }
 			   
 		   
 		   
