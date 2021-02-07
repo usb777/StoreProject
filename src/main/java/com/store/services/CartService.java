@@ -44,6 +44,12 @@ public class CartService implements ICartService
 	    	return cartRepository.findCartsByUserId(user_id);
 	    }
 	    
+	    public Cart findCartByUserId(int user_id)
+	    {
+	    	return cartRepository.findCartByUserId(user_id);
+	    }
+	    
+	    
 	  /*  
 	    public Object countCartItems( int user_id)
 	    {    

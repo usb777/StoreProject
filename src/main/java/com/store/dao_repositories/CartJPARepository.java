@@ -19,6 +19,10 @@ public interface CartJPARepository  extends JpaRepository<Cart, Integer>
 	  @Query(value = "SELECT  cart.cart_id, cart.user_id FROM Cart cart WHERE cart.user_id = ?", 	  nativeQuery = true)
 		 public List<Cart> findCartsByUserId( int user_id);
 	  
+	  @Query(value = "SELECT  cart.cart_id, cart.user_id FROM Cart cart WHERE cart.user_id = ?", 	  nativeQuery = true)
+		 public Cart findCartByUserId( int user_id);
+	  
+	  
 	/*
 	  @Query(value = "SELECT COUNT(ci.id) FROM cart_item ci JOIN cart c ON c.cart_id = ci.cart_id WHERE c.user_id= ?",  nativeQuery = true)
 		 public Object countCartItems( int user_id);

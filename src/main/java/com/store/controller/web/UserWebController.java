@@ -169,34 +169,20 @@ public class UserWebController
 	   
 	   @RequestMapping("/addCart/{userId}/{productId}")
 	   public String addProductToCart(Model model, @PathVariable("userId") int userId, @PathVariable("productId") int productId ) throws RecordNotFoundException 
-	   {	                 
-		  
-		   List < CartItem > cartItems = cartItemService.findCartItemByUserId(userId);
+	   {	 
+		   
+		  /*
+		   List < Cart > cartItems = cartService.findCartsByUserId(userId);	
+		   model.addAttribute("carts", cartItems    );	 
+        */		   
+		   
+		   Cart currentCartByUser = cartService.findCartByUserId(userId);
+		   
 		   Product product = productService.getProductByID(productId);
 		   
-		   try 
-		   {   
-			   model.addAttribute("carts", cartItems    );
-			   CartItem cartItem = new CartItem(cartItems.get(0).getCart_id(), product, 1, new Date());
-			   cartItemService.saveNewCartItem(cartItem);
-		   }
-		   catch (Exception e) 
-		   {
-			   System.out.println("============================");
-			   System.out.println("Error = "+e.getMessage());
-			   System.out.println("============================");
-		   }
-			   
-		   
-		   
-		   /* 
-		   CartItem cartItem = new CartItem(1010, productId, 1, new Date());
-		   cartItemService.saveNewCartItem(cartItem);
-		   */
-		   //To Do: Get cartID(cart) from   
-		   
-		  
-		  
+		CartItem cartItem = new CartItem(currentCartByUser.getCart_id(), product, 1, new Date());  // Error is here   
+		cartItemService.saveNewCartItem(cartItem);
+		 
 		   Object items = cartItemService.countCartItems(userId);
 		   model.addAttribute("cartItems",items );
 		   
