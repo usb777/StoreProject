@@ -86,14 +86,15 @@ public class MainWebController
 	   }
 	   
 	   
-	   @RequestMapping(value= {"/home/home"}, method=RequestMethod.GET)
+	   @RequestMapping(value= {"/logined"}, method=RequestMethod.GET)
 	   public ModelAndView home() {
 	    ModelAndView model = new ModelAndView();
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    User user = userService.findUserByEmail(auth.getName());
 	    
+	    model.addObject("userId", user.getUser_id()  );
 	    model.addObject("userName", user.getName()  );
-	    model.setViewName("home/home");
+	    model.setViewName("logined");
 	    return model;
 	   }
 	   

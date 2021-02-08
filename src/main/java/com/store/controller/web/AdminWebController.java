@@ -58,6 +58,8 @@ public class AdminWebController
 	    public String showUserList(Model model)  
 	    {
 		 	model.addAttribute("users", userService.getUsers());
+		 	
+		 	
 		    return "admin/users";
 	    }
 	 

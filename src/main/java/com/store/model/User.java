@@ -2,6 +2,7 @@ package com.store.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -60,7 +61,7 @@ public class User
 	@Column(name = "username")  //
 	String username;
 	
-	
+	//Role currentRole;
 	
 	/*
 	@Column(name = "address_id")
@@ -116,6 +117,7 @@ public class User
 	this.username = username;
 	//this.address_id =  address_id;
 	this.address = address;
+	
 }
 	
 	
@@ -144,6 +146,25 @@ public class User
 	 public void setRoles(Set<Role> roles) {
 	  this.roles = roles;
 	 }
+	 
+	/* 
+	 public Role getCurrentRole()
+	 {
+		 
+		 Set<Role> roless = this.roles;
+		 Role userRole = new Role();
+		 Iterator it = roless.iterator();
+		 
+		 while (it.hasNext())
+		 {
+			 userRole = (Role)it.next();
+			  
+		 }
+		 
+		 return userRole;
+	 }
+	 
+	 */
 	
 	
 	public int getUser_id() {
@@ -224,7 +245,7 @@ public class User
 	public String toString() {
 		return "User [user_id=" + user_id + ", dateof_birth=" + dateof_birth + ", job=" + job + ", name=" + name
 				+ ", age=" + age + ", email=" + email + ", is_enabled=" + is_enabled + ", password=" + password
-				+ ", username=" + username   + ", address=" + address.id   +"]";
+				+ ", username=" + username   + ", address=" + address.id   +"]"; 
 	}
 	
 

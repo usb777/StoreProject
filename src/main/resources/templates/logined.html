@@ -22,10 +22,10 @@
             </p>
             <div class="col-md-10">
             
-                <h2 th:text="${test}"></h2>
+                <h2 >Choose your Role</h2>
               
-              <!-- Records -->
-              
+              <a  th:href="@{'/user/'+ ${userId}+'/store'}"  class="btn btn-danger"  >User store</a>&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+               <a  th:href="@{'/admin/products'}"  class="btn btn-danger"  >Admin part</a>&nbsp;&nbsp;&nbsp;&nbsp;
            </div>
         </div>
     </div>
