@@ -1,6 +1,6 @@
 1. Role definition - get Role from User
 
-2. Important  - create user Cart and Order and Address
+2. Important  - SignUp user - new  Cart, Order and Address
 
 
 
