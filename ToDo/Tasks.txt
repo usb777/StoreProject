@@ -1,8 +1,11 @@
 1. Role definition - get Role from User
 
-2. Important  - SignUp user - new  Cart, Order and Address
+2. Order complete !!!!
 
-3. Order complete
+3. Pictures definitions
+
+4.  User Addresses changes 
+
 
 
 
