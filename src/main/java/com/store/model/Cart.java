@@ -40,7 +40,7 @@ public class Cart
 	
 	}
 
-	public Cart( int user_id, int product_id, Date date_added,  int quantity) 
+	public Cart( int user_id) 
 	{
 		super();		
 		this.user_id = user_id;

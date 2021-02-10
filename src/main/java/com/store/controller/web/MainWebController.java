@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.store.model.Cart;
+import com.store.model.Order;
 import com.store.model.Product;
 import com.store.model.User;
 import com.store.services.CartService;
@@ -38,6 +40,14 @@ public class MainWebController
 
 	   @Autowired
 	   private UserService userService;
+	   
+	   @Autowired
+	   private CartService cartService;
+	   
+	   @Autowired
+	   private OrderService orderService;
+	   
+	   
 	   
 	   @RequestMapping(value= {"/", "/login"}, method=RequestMethod.GET)
 	   public ModelAndView login() {
@@ -67,8 +77,19 @@ public class MainWebController
 	    }
 	    if(bindingResult.hasErrors()) {
 	     model.setViewName("signup");
-	    } else {
+	    } else 
+	    {
 	     userService.saveNewUser(user);
+	     
+	     System.out.println("================User id ============ "+user.getUser_id());
+	     
+	     Cart cartForNewUser = new Cart(user.getUser_id());
+	     Order orderForNewUser = new Order(user.getUser_id()) ;
+	     
+	     cartService.saveNewCart(cartForNewUser);
+	     orderService.saveNewOrder(orderForNewUser);
+	     
+	     
 	     model.addObject("msg", "User has been registered successfully!");
 	     model.addObject("user", new User());
 	     model.setViewName("signup");
