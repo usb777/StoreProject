@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.store.model.Address;
 import com.store.model.Cart;
 import com.store.model.Order;
 import com.store.model.Product;
 import com.store.model.User;
+import com.store.services.AddressService;
 import com.store.services.CartService;
 import com.store.services.OrderService;
 import com.store.services.ProductService;
@@ -47,7 +49,8 @@ public class MainWebController
 	   @Autowired
 	   private OrderService orderService;
 	   
-	   
+	   @Autowired
+	   private AddressService addressService;
 	   
 	   @RequestMapping(value= {"/", "/login"}, method=RequestMethod.GET)
 	   public ModelAndView login() {
@@ -79,6 +82,10 @@ public class MainWebController
 	     model.setViewName("signup");
 	    } else 
 	    {
+	    	
+	    	Address address = new	Address( "default address", "default phonenumber", "default city", "default state", "default country", 11111);
+	    	 addressService.saveNewAddress(address);
+	    	 user.setAddress(address);
 	     userService.saveNewUser(user);
 	     
 	     System.out.println("================User id ============ "+user.getUser_id());

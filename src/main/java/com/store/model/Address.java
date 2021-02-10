@@ -49,7 +49,7 @@ public class Address
 	}
 	
 
-	public Address(int id, String address, String phonenumber, String city, String state, String country, int zipcode /*,	int user_id*/) 
+	public Address(int id, String address, String phonenumber, String city, String state, String country, int zipcode) 
 	{
 		super();
 		this.id = id;
@@ -64,7 +64,7 @@ public class Address
 
 	
 
-	public Address( String address, String phonenumber, String city, String state, String country, int zipcode/*,	int user_id*/) 
+	public Address( String address, String phonenumber, String city, String state, String country, int zipcode) 
 	{
 		super();
 		
@@ -76,8 +76,6 @@ public class Address
 		this.zipcode = zipcode;
 	//	this.user_id = user_id;
 	}
-
-	
 
 	public int getId() {
 		return id;
