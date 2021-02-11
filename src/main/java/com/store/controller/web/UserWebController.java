@@ -12,8 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -232,9 +234,54 @@ public class UserWebController
 	        {	
 				return "redirect:/";
 			}
+	   
+	   
+	
 	 
+	   @RequestMapping("/info-update/{userId}")
+		public ModelAndView showEditUserForm(@PathVariable(name = "userId") int userId) throws RecordNotFoundException 
+	   {
+			ModelAndView mav = new ModelAndView("/user/info-update");   //html page 
+					
+			User user = userService.getUserByID(userId);
+			mav.addObject("user", user);
+			
+			return mav;
+		}
 	   
 	   
+	   @RequestMapping(value = "/save", method = RequestMethod.POST)
+			public String saveUser(@ModelAttribute("user") User user) throws RecordNotFoundException 
+		   {   
+			 		   
+		   if( (user.getPassword().isEmpty())|| (user.getPassword().equals(null)) ) //  No changes? try to implement logik
+		   {
+			   System.out.println("======Empty password==========");
+			   return "redirect:/user/info/"+user.getUser_id();
+		   }
+		   else 
+		   {
+			   //some code for changed password
+		   }
+		   
+		   
+		   
+			   System.out.println("======Addr==========");
+			   System.out.println(user.getAddress());
+			   System.out.println("================");
+			   
+			 //  Address  address = addressService.getAddressByID();
+			   
+			   
+			   //user.setAddress();
+			   
+			    userService.saveNewUser(user);		/// u can change on UpdateUser
+			    
+			 
+			    return "redirect:/user/info/"+user.getUser_id();
+			}
+		   
+		   
 	   
 	 
 }
