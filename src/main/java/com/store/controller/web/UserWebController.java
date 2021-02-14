@@ -256,7 +256,7 @@ public class UserWebController
 			 		   
 		   if( (user.getPassword().isEmpty())|| (user.getPassword().equals(null)) ) //  No changes? try to implement logik
 		   {
-			   System.out.println("======Empty password==========");
+			 
 			   return "redirect:/user/info/"+user.getUser_id();
 		   }
 		   else 
@@ -266,9 +266,7 @@ public class UserWebController
 		   
 		   
 		   
-			   System.out.println("======Addr==========");
-			   System.out.println(user.getAddress());
-			   System.out.println("================");
+			
 			   
 			 //  Address  address = addressService.getAddressByID();
 			   
