@@ -168,39 +168,7 @@ public class UserWebController
 		   return "user/store";		   
 	   }
 	   
-	   
-	   @RequestMapping("/addCart/{userId}/{productId}")
-	   public String addProductToCart(Model model, @PathVariable("userId") int userId, @PathVariable("productId") int productId ) throws RecordNotFoundException 
-	   {	 
-		   
-		  /*
-		   List < Cart > cartItems = cartService.findCartsByUserId(userId);	
-		   model.addAttribute("carts", cartItems    );	 
-        */		   
-		   
-		   Cart currentCartByUser = cartService.findCartByUserId(userId);
-		   
-		   Product product = productService.getProductByID(productId);
-		   
-		CartItem cartItem = new CartItem(currentCartByUser.getCart_id(), product, 1, new Date());  // Error is here   
-		cartItemService.saveNewCartItem(cartItem);
-		 
-		   Object items = cartItemService.countCartItems(userId);
-		   model.addAttribute("cartItems",items );
-		   
-		   model.addAttribute("totalPrice",cartItemService.totalCartPrice(userId) );
-		   
-		   
-		   
-		   model.addAttribute("userId", userId);		   
-		   model.addAttribute("products", productService.getProducts());
-		   
-		 
-		  // return "user/store";		
-		   return "redirect:/user/"+userId+"/store";
-		   
-	   }
-	   
+
 	   
 	   
 	   
@@ -264,21 +232,60 @@ public class UserWebController
 			   //some code for changed password
 		   }
 		   
-		   
-		   
+		    //  Address  address = addressService.getAddressByID();
+			//user.setAddress();
 			
-			   
-			 //  Address  address = addressService.getAddressByID();
-			   
-			   
-			   //user.setAddress();
-			   
-			    userService.saveNewUser(user);		/// u can change on UpdateUser
-			    
-			 
-			    return "redirect:/user/info/"+user.getUser_id();
+		   		userService.saveNewUser(user);		/// u can change on UpdateUser
+			 	return "redirect:/user/info/"+user.getUser_id();
 			}
 		   
+	   
+	   @RequestMapping("/addCart/{userId}/{productId}")
+	   public String addProductToCart(Model model, @PathVariable("userId") int userId, @PathVariable("productId") int productId ) throws RecordNotFoundException 
+	   {	 
+		   
+		  /*
+		   List < Cart > cartItems = cartService.findCartsByUserId(userId);	
+		   model.addAttribute("carts", cartItems    );	 
+        */		   
+		   
+		   Cart currentCartByUser = cartService.findCartByUserId(userId);
+		   
+		   Product product = productService.getProductByID(productId);
+		   
+		CartItem cartItem = new CartItem(currentCartByUser.getCart_id(), product, 1, new Date());  // Error is here   
+		cartItemService.saveNewCartItem(cartItem);
+		 
+		   Object items = cartItemService.countCartItems(userId);
+		   model.addAttribute("cartItems",items );
+		   
+		   model.addAttribute("totalPrice",cartItemService.totalCartPrice(userId) );
+		   
+		   
+		   
+		   model.addAttribute("userId", userId);		   
+		   model.addAttribute("products", productService.getProducts());
+		   
+		 
+		  // return "user/store";		
+		   return "redirect:/user/"+userId+"/store";
+		   
+	   }
+	   
+	   
+		 
+	   @RequestMapping("/buy/{cartItemId}")
+		public ModelAndView buyProduct(@PathVariable(name = "cartItemId") int cartItemId) throws RecordNotFoundException 
+	   {
+			ModelAndView mav = new ModelAndView("/user/order");   //html page 
+					
+			User user = userService.getUserByID(cartItemId);
+			mav.addObject("user", user);
+			
+			return mav;
+		}
+	   
+	   
 		   
 	   
 	 
