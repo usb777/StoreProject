@@ -27,6 +27,21 @@ public class OrderService implements IOrderService
 	    {       this.orderRepository = orderRepository;	    }
 	    
 	
+	    
+	    
+	    
+	    public List<Order> findOrdersByUserId(int user_id)
+	    {
+	    	return orderRepository.findOrdersByUserId(user_id);
+	    }
+	    
+	    public Order findOrderByUserId(int user_id)
+	    {
+	    	return orderRepository.findOrderByUserId(user_id);
+	    }
+	       
+	    
+	    
 
 	   // Get Orders 
 	@Override

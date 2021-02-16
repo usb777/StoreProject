@@ -24,6 +24,7 @@ import com.store.dao_repositories.CartJPARepository;
 import com.store.exception.RecordNotFoundException;
 import com.store.model.Cart;
 import com.store.model.CartItem;
+import com.store.model.Order;
 import com.store.model.OrderItem;
 import com.store.model.Product;
 import com.store.model.User;
@@ -257,10 +258,8 @@ public class UserWebController
 		cartItemService.saveNewCartItem(cartItem);
 		 
 		   Object items = cartItemService.countCartItems(userId);
-		   model.addAttribute("cartItems",items );
-		   
-		   model.addAttribute("totalPrice",cartItemService.totalCartPrice(userId) );
-		   
+		   model.addAttribute("cartItems",items );		   
+		   model.addAttribute("totalPrice",cartItemService.totalCartPrice(userId) );		   
 		   
 		   
 		   model.addAttribute("userId", userId);		   
@@ -278,10 +277,40 @@ public class UserWebController
 		public ModelAndView buyProduct(@PathVariable(name = "cartItemId") int cartItemId) throws RecordNotFoundException 
 	   {
 			ModelAndView mav = new ModelAndView("/user/order");   //html page 
-					
-			User user = userService.getUserByID(cartItemId);
-			mav.addObject("user", user);
 			
+			Object userId = cartItemService.getUserIDbyCartItemID(cartItemId);
+			int user_id=-1;
+			
+			try {			
+			 user_id = (int) userId;
+			}
+			catch (Exception e) {e.printStackTrace();}
+			
+			User user = userService.getUserByID(user_id);
+			
+			
+			mav.addObject("user", user);
+			mav.addObject("userId", user.getUser_id());	
+			
+			//System.out.println(user.getUser_id());	
+			
+			Order currentOrderByUser = orderService.findOrderByUserId(user.getUser_id());
+			//	System.out.println(currentOrderByUser.toString());	
+	 
+			CartItem currentCartItem = cartItemService.getCartItemByID(cartItemId);
+		//	System.out.println(currentCartItem.toString());
+		//	System.out.println(currentOrderByUser.getOrder_id()); //Error!!!
+			OrderItem orderItem = new OrderItem( currentOrderByUser.getOrder_id(),currentCartItem.getProduct(), currentCartItem.getDate_added(), currentCartItem.getQuantity()) ;
+			
+		//	System.out.println(orderItem.toString());
+			orderItemService.saveNewOrderItem(orderItem);
+		//	System.out.println("Cart_id = "+currentCartItem.getId());
+			
+             cartItemService.deleteCartItem(currentCartItem.getId()); // delete Item from Cart
+			
+              mav.addObject("orderItems", orderItem);
+              
+              
 			return mav;
 		}
 	   

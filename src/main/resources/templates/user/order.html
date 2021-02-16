@@ -12,7 +12,7 @@
   
 </head>
 <body>
-UserId: <span th:text="${userId}" ></span> <br>
+UserId: <span th:text="${user.user_id}" ></span> <br>
 
     <div class="container-fluid">
 	<div class="row">
@@ -34,7 +34,7 @@ UserId: <span th:text="${userId}" ></span> <br>
 	<div class="col-md-8"  >    <!--Content -->
 	
 	        
-         <div th:switch="${orderitems}" >
+         <div th:switch="${orderItems}" >
     <h2 th:case="null">No orders yet!</h2>
         <div th:case="*">
             <h2 align="center">Orders</h2>
@@ -55,7 +55,7 @@ UserId: <span th:text="${userId}" ></span> <br>
                     </tr>
                 </thead>
                 <tbody>
-                <tr th:each="order : ${orderitems}">                  
+                <tr th:each="order : ${orderItems}">                  
                                
                     <td th:text="${order.product.productName}"></td>
                      <td th:text="${order.product.price}"></td>
