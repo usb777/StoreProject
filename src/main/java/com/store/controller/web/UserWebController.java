@@ -314,8 +314,15 @@ public class UserWebController
 			return mav;
 		}
 	   
-	   
+	   //buy-all/
 		   
-	   
+	   @RequestMapping("/buy-all}")
+		public ModelAndView buyAllProduct() throws RecordNotFoundException 
+	   {
+			ModelAndView mav = new ModelAndView("/user/order-all");   //html page 
+			
+              
+			return mav;
+		}
 	 
 }
