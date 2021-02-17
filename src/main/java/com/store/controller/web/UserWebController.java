@@ -334,15 +334,14 @@ public class UserWebController
 			while (iteratorCI.hasNext())
 			{
 				currentCartItem = iteratorCI.next();
-				// OrderItem( currentOrderByUser.getOrder_id(),currentCartItem.getProduct(), new Date(), currentCartItem.getQuantity()) ;
+				
 				
 				OrderItem orderItem = new OrderItem( currentOrderByUser.getOrder_id(),currentCartItem.getProduct(), dateBuyAll, currentCartItem.getQuantity()) ;
 				
-				orderItemService.saveNewOrderItem(orderItem); // save OrderItem to Database
+				orderItemService.saveNewOrderItem(orderItem); // save OrderItem to Database				
+				 cartItemService.deleteCartItem(currentCartItem.getId());  // delete Product from User Cart
 				
-				 cartItemService.deleteCartItem(currentCartItem.getId());
-				
-				orderItems.add(orderItem );
+				orderItems.add(orderItem ); // add orderItems to List for importing to view
 				
 			}
 			
