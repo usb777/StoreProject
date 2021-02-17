@@ -76,7 +76,7 @@ UserId: <span th:text="${userId}" ></span> <br>
         </table>
        
         <br>
-        <a th:href="@{'/user/buy-all/' }" class="btn btn-success">Buy All</a>	
+        <a th:href="@{'/user/buy-all/'+ ${userId} }" class="btn btn-success">Buy All</a>	
         </div>   
     </div>      
    

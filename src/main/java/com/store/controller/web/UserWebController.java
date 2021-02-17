@@ -300,7 +300,7 @@ public class UserWebController
 			CartItem currentCartItem = cartItemService.getCartItemByID(cartItemId);
 		//	System.out.println(currentCartItem.toString());
 		//	System.out.println(currentOrderByUser.getOrder_id()); //Error!!!
-			OrderItem orderItem = new OrderItem( currentOrderByUser.getOrder_id(),currentCartItem.getProduct(), currentCartItem.getDate_added(), currentCartItem.getQuantity()) ;
+			OrderItem orderItem = new OrderItem( currentOrderByUser.getOrder_id(),currentCartItem.getProduct(), new Date(), currentCartItem.getQuantity()) ;
 			
 		//	System.out.println(orderItem.toString());
 			orderItemService.saveNewOrderItem(orderItem);
@@ -316,13 +316,45 @@ public class UserWebController
 	   
 	   //buy-all/
 		   
-	   @RequestMapping("/buy-all}")
-		public ModelAndView buyAllProduct() throws RecordNotFoundException 
+	   @RequestMapping("/buy-all/{userId}")
+		public ModelAndView buyAllProduct(@PathVariable(name = "userId") int userId) throws RecordNotFoundException 
 	   {
+		   CartItem currentCartItem = new CartItem();
+		   Order currentOrderByUser = orderService.findOrderByUserId(userId);
+		   
 			ModelAndView mav = new ModelAndView("/user/order-all");   //html page 
+			
+			mav.addObject("userId", userId);	
+			List<CartItem> cartItems = cartItemService.findCartItemByUserId(userId);
+			List<OrderItem> orderItems = new ArrayList<OrderItem>();
+			
+			Iterator<CartItem> iteratorCI = cartItems.iterator();
+			
+			Date dateBuyAll = new Date(); 
+			while (iteratorCI.hasNext())
+			{
+				currentCartItem = iteratorCI.next();
+				// OrderItem( currentOrderByUser.getOrder_id(),currentCartItem.getProduct(), new Date(), currentCartItem.getQuantity()) ;
+				
+				OrderItem orderItem = new OrderItem( currentOrderByUser.getOrder_id(),currentCartItem.getProduct(), dateBuyAll, currentCartItem.getQuantity()) ;
+				
+				orderItemService.saveNewOrderItem(orderItem); // save OrderItem to Database
+				
+				 cartItemService.deleteCartItem(currentCartItem.getId());
+				
+				orderItems.add(orderItem );
+				
+			}
+			
+			mav.addObject("orderItems",orderItems);
+			
 			
               
 			return mav;
 		}
 	 
+	   
+	   
+	   
+	   
 }
