@@ -265,8 +265,7 @@ public class UserWebController
 		   model.addAttribute("userId", userId);		   
 		   model.addAttribute("products", productService.getProducts());
 		   
-		 
-		  // return "user/store";		
+		 	
 		   return "redirect:/user/"+userId+"/store";
 		   
 	   }
@@ -314,8 +313,9 @@ public class UserWebController
 			return mav;
 		}
 	   
-	   //buy-all/
-		   
+	  /*
+	   * Buy-all method 	   
+	   */
 	   @RequestMapping("/buy-all/{userId}")
 		public ModelAndView buyAllProduct(@PathVariable(name = "userId") int userId) throws RecordNotFoundException 
 	   {
